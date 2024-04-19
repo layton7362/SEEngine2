@@ -50,6 +50,7 @@ void SceneTree::addNode(Node *node)
         {
             this->renderEngine->addMesh(object->mesh);
         }
+        node->enter();
     }
     else
     {
@@ -128,8 +129,6 @@ void SceneTree::physikUpdate()
 void SceneTree::renderUpdate()
 {
     this->renderEngine->renderBegin();
-
-    // this->material->useMaterial();
     mat->useMaterial();
     this->renderEngine->render();
 }

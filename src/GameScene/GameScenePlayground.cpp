@@ -36,7 +36,7 @@ void GameScenePlayground::init()
 
     Object3D *obj = new Object3D();
     obj->mesh = mesh;
-
+    obj->material = new DefaultMaterial();
     tree->addNode(obj);
     // OpenGLRenderEngine renderEngien;
     // renderEngien.addMesh(&mesh);

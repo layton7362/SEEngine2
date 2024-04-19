@@ -54,25 +54,6 @@ size_t Material::getProgramId()
     return this->programId;
 }
 
-void Material::addUniform(GLint location, std::function<void()> callable)
-{
-    uniforms[location] = callable;
-}
-
-void Material::updateUniform(GLint location, std::function<void()> callable)
-{
-    uniforms[location] = callable;
-}
-
-void Material::loadUniforms()
-{
-   for (const auto& pair : uniforms) {
-        UniformCallable call = pair.second;
-        call();
-    }
-
-}
-
 void Material::useMaterial()
 {
     glUseProgram(getProgramId());
@@ -96,8 +77,9 @@ DefaultMaterial::DefaultMaterial() : Material()
     GLint location = glGetUniformLocation(getProgramId(), "shift_x");
     GLint location2 = glGetUniformLocation(getProgramId(), "shift_y");
 
-    addUniform(location, UniformCall(Uniform::setFloat(location, 1)));
-    addUniform(location2, UniformCall(Uniform::setFloat(location2, 0)));
+
+    addUniform(location, UniformCall(TraitUniform::setFloat(location, 1)));
+    addUniform(location2, UniformCall(TraitUniform::setFloat(location2, 1)));
 }
 
 DefaultMaterial::DefaultMaterial(array<Shader *, ShaderListType::Count> shaders) : Material(shaders)

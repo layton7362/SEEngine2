@@ -11,6 +11,7 @@
 
 #include <Graphic/Mesh.hpp>
 #include <Graphic/Material.hpp>
+#include <Graphic/Uniform.hpp>
 
 #include <GameScene/GameSceneIncludes.hpp>
 
@@ -35,7 +36,6 @@ public:
 
 class Node3D : public Node
 {
-
 protected:
     mat4 transformation;
 
@@ -56,11 +56,20 @@ public:
     }
 };
 
-class Object3D : public Node3D
+class Object3D : public Node3D, public TraitUniform
 {
+public:
+    map<GLint, UniformCallable> uniforms;
+
 public:
     Mesh *mesh;
     Material *material;
+
+    void enter() override
+    {
+        GLint location2 = glGetUniformLocation(material->getProgramId(), "shift_y");
+        addUniform(location2, UniformCall(TraitUniform::setFloat(location2, -1)));
+    }
 };
 
 class RenderEngine;

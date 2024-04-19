@@ -5,3 +5,4 @@ class IDisposable
 public:
     virtual void dispose() = 0;
 };
+
