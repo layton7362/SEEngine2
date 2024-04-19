@@ -1,6 +1,6 @@
 #include <Graphic/Mesh.hpp>
 
-Mesh::Mesh(const MeshDataContainer &meshData): Resource()
+Mesh::Mesh(const MeshDataContainer &meshData): Ressource()
 {
     data[MeshData::VERTICES] = meshData[MeshData::VERTICES];
     data[MeshData::NORMALS] = meshData[MeshData::NORMALS];

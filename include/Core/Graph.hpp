@@ -3,7 +3,8 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <Interface.hpp>
+
+#include <Core/Object.hpp>
 
 #include <Engine/RenderEngine.hpp>
 #include <Engine/PhysicEngine.hpp>
@@ -16,7 +17,7 @@
 using std::vector;
 using namespace glm;
 
-class Node : public IDisposable
+class Node : public Object
 {
 private:
     vector<Node *> children;

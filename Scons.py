@@ -26,7 +26,8 @@ LIBS = [
         "glfw3"
         ]
 
-HEADERPATH= [
+
+HEADERPATH = [
        f"{project_directory}/include",
        "F:/MyProgProject/Common/include"
         ]

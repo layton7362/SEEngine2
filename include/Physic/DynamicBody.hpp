@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Physic/Body.hpp>
+#include <Physic/Body3D.hpp>
 
-class DynamicBody{
+class DynamicBody: public Body3D{
     
 public:
     DynamicBody();

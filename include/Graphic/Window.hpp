@@ -18,6 +18,6 @@ public:
 
     int init_window();
     void processInput();
-    // void framebuffer_size_callback(GLFWwindow *window, int width, int height);
     void terminate();
+
 };

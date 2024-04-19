@@ -1,7 +1,7 @@
 #pragma once
-#include <Physic/Body.hpp>
+#include <Physic/Body3D.hpp>
 
-class StaticBody{
+class StaticBody: public Body3D{
     
 public:
     StaticBody();

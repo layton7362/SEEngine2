@@ -10,13 +10,14 @@
 #include <Graphic/Material.hpp>
 #include <Graphic/Mesh.hpp>
 
+#include <Manager/InputManager.hpp>
+
 using std::vector;
 using std::array;
 
 SceneTree tree;
 
 void* operator new(size_t size) {
-    std::cout << "Überschriebener new-Operator wurde aufgerufen." << std::endl;
     return std::malloc(size); // Standard-Implementierung aufrufen
 }
 

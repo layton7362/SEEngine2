@@ -1,13 +1,29 @@
 #include <Graphic/Window.hpp>
 #include <Core/Log.hpp>
-// #include <glad/glad.h>
+#include <glad/glad.h>
+#include <stdio.h>
+#include <Manager/InputManager.hpp>
+
+void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
+{
+    InputManager::previousKeys[key] = InputManager::pressedKeys[key];
+    InputManager::pressedKeys[key] = action == GLFW_PRESS;
+
+    // if ( KeyCode::A == key && action == GLFW_REPEAT)
+    // {
+    //     std::cout << "Taste gedrückt: " << key << std::endl;
+    // }
+    // else if (action == GLFW_RELEASE)
+    // {
+    //     std::cout << "Taste losgelassen: " << key << std::endl;
+    // }
+}
 
 
-void framebuffer_size_callback(GLFWwindow *window, int width, int height)
+void framebufferSizeCallback(GLFWwindow *window, int width, int height)
 {
     glViewport(0, 0, width, height);
 }
-
 
 Window::Window(size_t w, size_t h, const char *t)
 {
@@ -34,7 +50,8 @@ int Window::init_window()
         return -1;
     }
     glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+    glfwSetKeyCallback(window, keyCallback);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {

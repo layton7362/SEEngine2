@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core/Base.hpp>
+#include <Core/Ressource.hpp>
 #include <Core/String.hpp>
 #include <Graphic/Shader.hpp>
 #include <variant>
@@ -85,7 +85,7 @@ using UniformCallable = std::function<void()>;
 
 #define UniformCall(C) [=](){C;}
 
-class Material : public Resource
+class Material : public Ressource
 {
 protected:
     size_t programId;

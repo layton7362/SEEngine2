@@ -20,7 +20,7 @@ class {file_name}{{
     
 public:
     {file_name}();
-    virtual ~{file_name}();
+    virtual ~{file_name}() noexcept;
 }};
 '''
 
