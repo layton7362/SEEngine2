@@ -1,8 +1,7 @@
 import os
 import sys
 
-src_code = '''
-#include <{folder_name}/{file_name}.hpp>
+src_code = '''#include <{folder_name}/{file_name}.hpp>
 
 {file_name}::{file_name}()
 {{
@@ -15,7 +14,8 @@ src_code = '''
 }}
 '''
 
-header_code = '''
+header_code = '''#pragma once
+
 class {file_name}{{
     
 public:

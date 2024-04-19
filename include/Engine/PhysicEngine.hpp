@@ -1,25 +1,9 @@
-#include <glm/glm.hpp>
 #include <Interface.hpp>
 
-using namespace glm;
-
-class Shape
+class PhysicWorld: public IDisposable
 {
 public:
-    vec3 position;
-    vec3 globalPosition;
-};
-
-class Sphere : public Shape
-{
-};
-
-class Box : public Shape
-{
-};
-
-class PhysicWorld : public IDisposable
-{
-public:
+    PhysicWorld();
+    virtual ~PhysicWorld();
     virtual void dispose() override;
 };

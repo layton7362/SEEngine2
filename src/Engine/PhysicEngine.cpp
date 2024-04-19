@@ -1,6 +1,14 @@
 #include <Engine/PhysicEngine.hpp>
 
-void PhysicWorld::dispose()
+PhysicWorld::PhysicWorld()
+{
+
+}
+PhysicWorld::~PhysicWorld()
 {
     
+}
+
+void PhysicWorld::dispose()
+{
 }

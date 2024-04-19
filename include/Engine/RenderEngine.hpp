@@ -42,6 +42,5 @@ public:
     virtual void renderBegin() override;
     virtual void render() override;
     virtual void renderEnd() override;
-
     virtual void dispose() override;
 };
