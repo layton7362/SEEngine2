@@ -81,8 +81,8 @@ void Material::useMaterial()
 
 DefaultMaterial::DefaultMaterial() : Material()
 {
-    ShaderVertex *vs = new ShaderVertex("shaders/basic.vert");
-    ShaderFragment *fs = new ShaderFragment("shaders/basic.frag");
+    ShaderVertex *vs = new ShaderVertex("res/shaders/basic.vert");
+    ShaderFragment *fs = new ShaderFragment("res/shaders/basic.frag");
 
     std::array<Shader *, ShaderListType::Count> shaders;
 
@@ -96,8 +96,8 @@ DefaultMaterial::DefaultMaterial() : Material()
     GLint location = glGetUniformLocation(getProgramId(), "shift_x");
     GLint location2 = glGetUniformLocation(getProgramId(), "shift_y");
 
-    addUniform(location, UniformCall(Uniform::setFloat(location, 100)));
-    addUniform(location2, UniformCall(Uniform::setFloat(location2, 100)));
+    addUniform(location, UniformCall(Uniform::setFloat(location, 1)));
+    addUniform(location2, UniformCall(Uniform::setFloat(location2, 0)));
 }
 
 DefaultMaterial::DefaultMaterial(array<Shader *, ShaderListType::Count> shaders) : Material(shaders)

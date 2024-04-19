@@ -35,9 +35,6 @@ void OpenGLRenderEngine::buildMesh(Mesh *mesh)
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-    // remember: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
     this->render_id[mesh] = new RenderData{VAO, VBO, EBO};
 }
 
@@ -76,4 +73,10 @@ void OpenGLRenderEngine::dispose_meshes()
         mesh = nullptr;
         // glDeleteProgram(material->getProgramId());
     }
+}
+
+void OpenGLRenderEngine::dispose()
+{
+
+    // TODO
 }

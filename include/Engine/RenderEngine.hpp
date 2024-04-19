@@ -1,13 +1,16 @@
 #pragma once 
 
 #include <map>
-#include <Graphic/Mesh.hpp>
 #include <glad/glad.h>
+#include <Interface.hpp>
+#include <Core/Graph.hpp>
+#include <Graphic/Mesh.hpp>
 
-class RenderEngine
+class RenderEngine: public IDisposable
 {
 public:
     virtual void addMesh(Mesh *mesh) = 0;
+
     virtual void removeMesh(Mesh *mesh) = 0;
 
     virtual void buildMesh(Mesh* mesh) = 0;
@@ -39,4 +42,6 @@ public:
     virtual void renderBegin() override;
     virtual void render() override;
     virtual void renderEnd() override;
+
+    virtual void dispose() override;
 };

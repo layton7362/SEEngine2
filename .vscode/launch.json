@@ -47,8 +47,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "f:/MyProgProject/OpenGLC++/src",
-      "program": "f:/MyProgProject/OpenGLC++/src/build/Debug/outDebug",
+      "cwd": "f:/MyProgProject/OpenGLC++/src/Graphic",
+      "program": "f:/MyProgProject/OpenGLC++/src/Graphic/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

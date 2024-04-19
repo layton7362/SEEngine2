@@ -18,7 +18,7 @@ Shader::Shader(const char *path, const ShaderType::Type &type)
 
     int success;
     glGetShaderiv(this->genId, GL_COMPILE_STATUS, &success);
-    if (success)
+    if (!success)
     {
         char infoLog[512];
         Log::error("SHADER::COMPILATION_FAILED");
