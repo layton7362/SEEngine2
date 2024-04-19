@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "name": "windows-gcc-x64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "-Iinclude",
+        "-IF:/MyProgProject/Common/include"
+      ],
+      "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+      "cStandard": "${default}",
+      "cppStandard": "${default}",
+      "intelliSenseMode": "windows-gcc-x64",
+      "compilerArgs": [
+        "-Iinclude",
+        "-IF:/MyProgProject/Common/include"
+      ]
+    }
+  ],
+  "version": 4
+}
