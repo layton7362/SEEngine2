@@ -17,17 +17,7 @@ int main()
     Window window(800,600,"Game");
     window.init_window();
 
-    ShaderVertex* vs = new ShaderVertex("shaders/basic.vert");
-    ShaderFragment* fs = new ShaderFragment("shaders/basic.frag");
-
-    std::array<Shader*, ShaderListType::Count> shaders;
-
-    shaders[ShaderListType::VERTEX] = vs;
-    shaders[ShaderListType::FRAGMENT] = fs;
-    shaders[ShaderListType::GEOMETRY] = nullptr;
-    shaders[ShaderListType::COMPUTE] = nullptr;
-
-    Material* material = new Material(shaders);
+    DefaultMaterial* material = new DefaultMaterial();
 
     float vertices[] = {
          0.5f,  0.5f, 0.0f,  // top right
@@ -55,15 +45,15 @@ int main()
         window.processInput();
 
         renderEngien.renderBegin();
-        glUseProgram(material->getProgramId());
+
+        material->useMaterial();
+        
         renderEngien.render();
    
         glfwSwapBuffers(window.window);
         glfwPollEvents();
     }
 
-    // glfw: terminate, clearing all previously allocated GLFW resources.
-    // ------------------------------------------------------------------
     glfwTerminate();
     return 0;
 }

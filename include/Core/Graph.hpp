@@ -1,25 +1,50 @@
-#include <vector>
+#pragma once
+
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <Graphic/Mesh.hpp>
 #include <Graphic/Material.hpp>
+#include <vector>
 
 using std::vector;
 using namespace glm;
 
 class Node
 {
-public:
-    bool add_child(const Node &child);
-    bool remove_child(const Node &child);
+private:
+    vector<Node*> children;
+    Node* parent = nullptr;
 
-    virtual void enter() = 0;
-    virtual void update() = 0;
+public:
+    bool add_child(Node* child);
+    bool remove_child(Node* child);
+
+    virtual void enter();
+    virtual void update();
 };
 
 class Node3D : public Node
 {
+
 protected:
     mat4 transformation;
+
+public:
+
+    void translate(const glm::vec3 &translation)
+    {
+        transformation = glm::translate(transformation, translation);
+    }
+
+    void scale(const glm::vec3 &scale)
+    {
+        transformation = glm::scale(transformation, scale);
+    }
+
+    void rotate(float angle, const glm::vec3 &axis)
+    {
+        transformation = glm::rotate(transformation, angle, axis);
+    }
 };
 
 class Object3D : public Node3D
@@ -27,12 +52,8 @@ class Object3D : public Node3D
 protected:
     Mesh *mesh;
     Material *material;
-
-public:
     
-
-
-
+public:
 };
 
 class SceneTree

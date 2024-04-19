@@ -1,3 +1,11 @@
+# Ignore Folders
+
 /.sconsign.dblite
 /build
 /build_test
+
+
+# Ignore Files
+
+*.o
+*.exe

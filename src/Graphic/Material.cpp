@@ -1,8 +1,21 @@
 #include <Graphic/Material.hpp>
 
-Material::Material(std::array<Shader *, ShaderListType::Count> shaders): Resource()
+Material::Material()
 {
+    // Empty
+}
 
+Material::Material(std::array<Shader *, ShaderListType::Count> shaders) : Resource()
+{
+    this->build(shaders);
+}
+
+Material::~Material()
+{
+}
+
+void Material::build(array<Shader *, ShaderListType::Count> &shaders)
+{
     ShaderVertex vs = *static_cast<ShaderVertex *>(shaders.at(ShaderListType::VERTEX));
     ShaderFragment fs = *static_cast<ShaderFragment *>(shaders.at(ShaderListType::FRAGMENT));
     if (!vs.file.success || !fs.file.success)
@@ -26,8 +39,9 @@ Material::Material(std::array<Shader *, ShaderListType::Count> shaders): Resourc
 
     for (size_t i = 0; i < ShaderListType::Count; i++)
     {
-        Shader* shader =  shaders[i];
-        if (shader != nullptr){
+        Shader *shader = shaders[i];
+        if (shader != nullptr)
+        {
             shader->dispose();
             delete shader;
             shader = nullptr;
@@ -35,11 +49,61 @@ Material::Material(std::array<Shader *, ShaderListType::Count> shaders): Resourc
     }
 }
 
-Material::~Material(){
-
-}
-
 size_t Material::getProgramId()
 {
     return this->programId;
+}
+
+void Material::addUniform(GLint location, std::function<void()> callable)
+{
+    uniforms[location] = callable;
+}
+
+void Material::updateUniform(GLint location, std::function<void()> callable)
+{
+    uniforms[location] = callable;
+}
+
+void Material::loadUniforms()
+{
+   for (const auto& pair : uniforms) {
+        UniformCallable call = pair.second;
+        call();
+    }
+
+}
+
+void Material::useMaterial()
+{
+    glUseProgram(getProgramId());
+    loadUniforms();
+}
+
+DefaultMaterial::DefaultMaterial() : Material()
+{
+    ShaderVertex *vs = new ShaderVertex("shaders/basic.vert");
+    ShaderFragment *fs = new ShaderFragment("shaders/basic.frag");
+
+    std::array<Shader *, ShaderListType::Count> shaders;
+
+    shaders[ShaderListType::VERTEX] = vs;
+    shaders[ShaderListType::FRAGMENT] = fs;
+    shaders[ShaderListType::GEOMETRY] = nullptr;
+    shaders[ShaderListType::COMPUTE] = nullptr;
+
+    build(shaders);
+
+    GLint location = glGetUniformLocation(getProgramId(), "shift_x");
+    GLint location2 = glGetUniformLocation(getProgramId(), "shift_y");
+
+    addUniform(location, UniformCall(Uniform::setFloat(location, 100)));
+    addUniform(location2, UniformCall(Uniform::setFloat(location2, 100)));
+}
+
+DefaultMaterial::DefaultMaterial(array<Shader *, ShaderListType::Count> shaders) : Material(shaders)
+{
+}
+
+DefaultMaterial::~DefaultMaterial() noexcept
+{
 }
