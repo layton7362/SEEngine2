@@ -48,7 +48,7 @@ void SceneTree::addNode(Node *node)
         nodes.push_back(node);
         if (Object3D *object = ToSubclass(Object3D, node))
         {
-            this->renderEngine->addMesh(object->mesh);
+            this->renderEngine->addObject(object);
         }
         node->enter();
     }

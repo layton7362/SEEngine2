@@ -6,14 +6,16 @@
 #include <Core/Graph.hpp>
 #include <Graphic/Mesh.hpp>
 
+class Object3D;
+
 class RenderEngine: public IDisposable
 {
 public:
-    virtual void addMesh(Mesh *mesh) = 0;
+    virtual void addObject(Object3D *mesh) = 0;
 
-    virtual void removeMesh(Mesh *mesh) = 0;
+    virtual void removeObject(Object3D *mesh) = 0;
 
-    virtual void buildMesh(Mesh* mesh) = 0;
+    virtual void buildMesh(Object3D* mesh) = 0;
     virtual void dispose_meshes() = 0;
 
     virtual void renderBegin() = 0;
@@ -31,13 +33,13 @@ struct RenderData
 class OpenGLRenderEngine : public RenderEngine
 {
 private:
-    std::map<Mesh *, RenderData *> render_id;
+    std::map<Object3D *, RenderData *> render_id;
 
 public:
-    virtual void addMesh(Mesh *mesh) override;
-    virtual void removeMesh(Mesh *mesh) override;
+    virtual void addObject(Object3D *mesh) override;
+    virtual void removeObject(Object3D *mesh) override;
 
-    virtual void buildMesh(Mesh* mesh) override;
+    virtual void buildMesh(Object3D* mesh) override;
     virtual void dispose_meshes() override;
     virtual void renderBegin() override;
     virtual void render() override;

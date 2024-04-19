@@ -1,21 +1,21 @@
 #include <Engine/RenderEngine.hpp>
 
-void OpenGLRenderEngine::addMesh(Mesh *mesh)
+void OpenGLRenderEngine::addObject(Object3D *obj)
 {
-    if (this->render_id.count(mesh) == 0)
+    if (this->render_id.count(obj) == 0)
     {
-        this->buildMesh(mesh);
+        this->buildMesh(obj);
     }
 }
 
-void OpenGLRenderEngine::removeMesh(Mesh *mesh)
+void OpenGLRenderEngine::removeObject(Object3D *obj)
 {
 }
 
-void OpenGLRenderEngine::buildMesh(Mesh *mesh)
+void OpenGLRenderEngine::buildMesh(Object3D *obj)
 {
-    vector<float> vertices = mesh->getVertices();
-    vector<unsigned int> indices = mesh->getIndices();
+    vector<float> vertices = obj->mesh->getVertices();
+    vector<unsigned int> indices = obj->mesh->getIndices();
 
     unsigned int VBO, VAO, EBO;
     glGenVertexArrays(1, &VAO);
@@ -35,7 +35,7 @@ void OpenGLRenderEngine::buildMesh(Mesh *mesh)
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-    this->render_id[mesh] = new RenderData{VAO, VBO, EBO};
+    this->render_id[obj] = new RenderData{VAO, VBO, EBO};
 }
 
 void OpenGLRenderEngine::renderBegin()
@@ -45,8 +45,9 @@ void OpenGLRenderEngine::renderBegin()
 }
 void OpenGLRenderEngine::render()
 {
-    for (std::pair<Mesh *const, RenderData *> &id : this->render_id)
+    for (auto &&id : this->render_id)
     {
+        id.first->loadUniforms();
         RenderData *data = id.second;
         glBindVertexArray(data->VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -62,9 +63,9 @@ void OpenGLRenderEngine::renderEnd()
 
 void OpenGLRenderEngine::dispose_meshes()
 {
-    for (std::pair<Mesh *const, RenderData *> &id : this->render_id)
+    for (auto &&id : this->render_id)
     {
-        Mesh *mesh = id.first;
+        Mesh *mesh = id.first->mesh;
         RenderData *data = id.second;
         glDeleteVertexArrays(1, &data->VAO);
         glDeleteBuffers(1, &data->VBO);
