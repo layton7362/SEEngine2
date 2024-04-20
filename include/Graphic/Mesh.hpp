@@ -10,6 +10,7 @@ using std::array;
 using std::variant;
 using std::vector;
 using glm::vec3;
+using glm::uvec3;
 
 struct MeshData
 {
@@ -26,7 +27,7 @@ struct MeshData
 };
 
 
-using Container = variant<vector<vec3>, vector<float>,vector<unsigned int>>;
+using Container = variant<vector<vec3>, vector<uvec3>, vector<float>>;
 using MeshDataContainer = array<Container, MeshData::Count>;
 
 class Mesh : public Ressource
@@ -46,5 +47,5 @@ public:
     const vector<float> &getColors() const;
     const vector<float> &getUV1() const;
     const vector<float> &getUV2() const;
-    const vector<unsigned int> &getIndices() const;
+    const vector<uvec3> &getIndices() const;
 };

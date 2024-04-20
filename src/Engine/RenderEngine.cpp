@@ -15,7 +15,7 @@ void OpenGLRenderEngine::removeObject(Object3D *obj)
 void OpenGLRenderEngine::buildMesh(Object3D *obj)
 {
     vector<vec3> vertices = obj->mesh->getVertices();
-    vector<unsigned int> indices = obj->mesh->getIndices();
+    vector<uvec> indices = obj->mesh->getIndices();
 
     unsigned int VBO, VAO, EBO;
     glGenVertexArrays(1, &VAO);

@@ -41,7 +41,7 @@ const vector<float> &Mesh::getUV2() const {
     return std::get<vector<float>>(data[MeshData::UV2]);
 }
 
-const vector<unsigned int> &Mesh::getIndices() const
+const vector<uvec3> &Mesh::getIndices() const
 {               
-    return std::get<vector<unsigned int>>(data[MeshData::INDICES]);
+    return std::get<vector<uvec3>>(data[MeshData::INDICES]);
 }

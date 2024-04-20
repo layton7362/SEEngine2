@@ -31,7 +31,7 @@ void GameScenePlayground::init()
     };
 
     vector<vec3> vertices_vec(std::begin(vertices), std::end(vertices));
-    vector<unsigned int> indices_vec(std::begin(indices), std::end(indices));
+    vector<uvec3> indices_vec(std::begin(indices), std::end(indices));
     MeshDataContainer data;
     data[MeshData::VERTICES] = vertices_vec;
     data[MeshData::INDICES] = indices_vec;
