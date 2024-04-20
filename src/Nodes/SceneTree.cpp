@@ -1,4 +1,3 @@
-#include <Nodes/SceneTree.hpp>
 #include <algorithm>
 #include <Core/Log.hpp>
 #include <Utils.hpp>
@@ -6,7 +5,9 @@
 #include <Engine/RenderEngine.hpp>
 #include <Engine/PhysicEngine.hpp>
 #include <GameScene/GameScene.hpp>
+#include <Graphic/DefaultMaterial.hpp>
 #include <Nodes/Node.hpp>
+#include <Nodes/SceneTree.hpp>
 
 SceneTree::SceneTree()
 {

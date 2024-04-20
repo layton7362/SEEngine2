@@ -1,21 +1,16 @@
 #pragma once
-
-#include <Nodes/SceneTree.hpp>
 #include <Interface.hpp>
 
+class SceneTree;
 
 class GameScene : public IDisposable
 {
 protected:
-    class SceneTree *tree;
+    SceneTree *tree;
 
 public:
-    GameScene(class SceneTree &tree)
-    {
-        this->tree = &tree;
-    }
-
-    virtual ~GameScene() noexcept {};
+    GameScene(SceneTree &tree);
+    virtual ~GameScene() noexcept;
 
     virtual void init() = 0;
     virtual void update(const float& delta ) = 0;

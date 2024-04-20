@@ -7,5 +7,5 @@ class Object: public IDisposable{
 public:
     Object();
     virtual ~Object() noexcept; 
-    virtual void dispose(){};
+    virtual void dispose();
 };

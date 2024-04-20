@@ -18,5 +18,5 @@ public:
 
     virtual void enter();
     virtual void update(const float& delta );
-    virtual void dispose() override{};
+    virtual void dispose() override;
 };

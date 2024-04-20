@@ -42,3 +42,7 @@ void Node::enter()
 void Node::update(const float& delta )
 {
 }
+
+void Node::dispose(){
+    disposed = true;
+}

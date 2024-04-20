@@ -9,3 +9,8 @@ Object::~Object()
 {
         
 }
+
+void Object::dispose(){
+    disposed = true;
+}
+

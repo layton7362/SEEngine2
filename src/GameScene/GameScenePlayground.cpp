@@ -1,8 +1,9 @@
-#include <GameScene/GameScenePlayground.hpp>
-#include <Graphic/Material.hpp>
+#include <Graphic/DefaultMaterial.hpp>
 #include <Graphic/Mesh.hpp>
 #include <Nodes/Object3D.hpp>
 #include <vector>
+#include <Nodes/SceneTree.hpp>
+#include <GameScene/GameScenePlayground.hpp>
 
 using std::vector;
 
@@ -34,18 +35,33 @@ void GameScenePlayground::init()
 
     Mesh *mesh = new Mesh(data);
 
-    Object3D *obj = new Object3D();
+    obj = new Object3D();
     obj->mesh = mesh;
     obj->material = new DefaultMaterial();
     tree->addNode(obj);
-    // OpenGLRenderEngine renderEngien;
-    // renderEngien.addMesh(&mesh);
+
+    player = new Object3D();
+    player->mesh = mesh;
+    player->material = new DefaultMaterial();
+    tree->addNode(player);
 }
 
 void GameScenePlayground::update(const float &delta)
 {
+    const float speed = delta * 1;
+    if (InputManager::isPressed(KeyCode::ARROW_LEFT))
+        player->translate(vec3(-speed, 0, 0));
+    if (InputManager::isPressed(KeyCode::ARROW_RIGHT))
+        player->translate(vec3(speed, 0, 0));
+    if (InputManager::isPressed(KeyCode::ARROW_DOWN))
+        player->translate(vec3(0, -speed, 0));
+    if (InputManager::isPressed(KeyCode::ARROW_UP))
+        player->translate(vec3(0, speed, 0));
+    if (InputManager::isPressed(KeyCode::R))
+        player->rotate(1 * delta, vec3(1, 0, 0));
 }
 
 void GameScenePlayground::dispose()
 {
+    obj->dispose();
 }

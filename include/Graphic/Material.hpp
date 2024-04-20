@@ -37,13 +37,3 @@ public:
     };
 };
 
-class DefaultMaterial : public Material
-{
-
-private:
-    DefaultMaterial(array<Shader *, ShaderListType::Count> shaders);
-
-public:
-    DefaultMaterial();
-    virtual ~DefaultMaterial() noexcept;
-};
