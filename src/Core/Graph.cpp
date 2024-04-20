@@ -30,7 +30,7 @@ void Node::enter()
 {
 }
 
-void Node::update()
+void Node::update(const float& delta )
 {
 }
 
@@ -114,10 +114,10 @@ void SceneTree::mainUpdate()
 {
     if (this->scene != nullptr)
     {
-        this->scene->update();
+        this->scene->update(delta);
         for (auto &&e : nodes)
         {
-            e->update();
+            e->update(delta);
         }
     }
 }

@@ -17,5 +17,5 @@ public:
     virtual ~GameScene() noexcept {};
 
     virtual void init() = 0;
-    virtual void update() = 0;
+    virtual void update(const float& delta ) = 0;
 };

@@ -42,7 +42,7 @@ void GameScenePlayground::init()
     // renderEngien.addMesh(&mesh);
 }
 
-void GameScenePlayground::update()
+void GameScenePlayground::update(const float &delta)
 {
 }
 

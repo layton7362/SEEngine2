@@ -15,6 +15,8 @@
 
 #include <GameScene/GameSceneIncludes.hpp>
 
+#include <Manager/InputManager.hpp>
+
 using std::vector;
 using namespace glm;
 
@@ -30,14 +32,14 @@ public:
     bool remove_child(Node *child);
 
     virtual void enter();
-    virtual void update();
+    virtual void update(const float& delta );
     virtual void dispose() override{};
 };
 
 class Node3D : public Node
 {
 protected:
-    mat4 transformation;
+    mat4 transformation = mat4(1.0f);
 
 public:
     void translate(const glm::vec3 &translation)
@@ -67,8 +69,24 @@ public:
 
     void enter() override
     {
-        GLint location2 = glGetUniformLocation(material->getProgramId(), "shift_y");
-        addUniform(location2, UniformCall(TraitUniform::setFloat(location2, -1)));
+        // translate(vec3(-1,0,0));
+        GLint loc = glGetUniformLocation(material->getProgramId(), "transformation");
+        addUniform(loc, UniformCall(TraitUniform::setMatrix4(loc, transformation)));
+    }
+    void update(const float& delta ) override
+    {
+        const float speed = delta * 1;
+        if (InputManager::isPressed(KeyCode::ARROW_LEFT))
+            translate(vec3(-speed, 0, 0));
+        if (InputManager::isPressed(KeyCode::ARROW_RIGHT))
+            translate(vec3(speed, 0, 0));
+        if (InputManager::isPressed(KeyCode::ARROW_DOWN))
+            translate(vec3(0, -speed, 0));
+        if (InputManager::isPressed(KeyCode::ARROW_UP))
+            translate(vec3(0, speed, 0));
+        if (InputManager::isPressed(KeyCode::R))
+            rotate(1 * delta , vec3(1,0,0));
+        
     }
 };
 
@@ -77,6 +95,7 @@ class SceneTree
 {
 private:
     vector<Node *> nodes;
+    
 
     RenderEngine *renderEngine = nullptr;
     PhysicWorld *physicWorld = nullptr;
@@ -85,6 +104,11 @@ private:
     DefaultMaterial *mat;
 
 public:
+
+    float delta;
+
+public:
+
     SceneTree();
     ~SceneTree();
 
