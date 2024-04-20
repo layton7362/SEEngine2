@@ -23,4 +23,6 @@ public:
 
     void enter() override;
     void update(const float &delta) override;
+
+    void dispose() override; 
 };

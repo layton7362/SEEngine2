@@ -5,6 +5,9 @@
 #include <Nodes/SceneTree.hpp>
 #include <GameScene/GameScenePlayground.hpp>
 
+#include <Mesh/Sphere2D.hpp>
+#include <Mesh/Box2D.hpp>
+
 using std::vector;
 
 GameScenePlayground::GameScenePlayground(SceneTree &tree) : GameScene(tree)
@@ -41,7 +44,7 @@ void GameScenePlayground::init()
     tree->addNode(obj);
 
     player = new Object3D();
-    player->mesh = mesh;
+    player->mesh = new Box2D(0.5, 0.5);
     player->material = new DefaultMaterial();
     tree->addNode(player);
 }

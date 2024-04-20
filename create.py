@@ -16,7 +16,8 @@ src_code = '''#include <{folder_name}/{file_name}.hpp>
 
 header_code = '''#pragma once
 
-class {file_name}{{
+class {file_name}
+{{
     
 public:
     {file_name}();

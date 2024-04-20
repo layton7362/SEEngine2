@@ -9,7 +9,7 @@ private:
     virtual ~CollisionUtil(){};
 
 public:
-    static bool collide(Box &obj1, Box &obj2);
-    static bool collide(Sphere &obj1, Box &obj2);
+    static bool collide(BoxShape &obj1, BoxShape &obj2);
+    static bool collide(Sphere &obj1, BoxShape &obj2);
     static bool collide(Sphere &obj1, Sphere &obj2);
 };

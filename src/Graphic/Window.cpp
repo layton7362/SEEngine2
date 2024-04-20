@@ -6,8 +6,10 @@
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
+    // TODO FIX RELEASE
     InputManager::previousKeys[key] = InputManager::pressedKeys[key];
-    InputManager::pressedKeys[key] = action == GLFW_PRESS;
+    InputManager::pressedKeys[key] = action == GLFW_REPEAT || action == GLFW_PRESS;
+
 
     // if ( KeyCode::A == key && action == GLFW_REPEAT)
     // {

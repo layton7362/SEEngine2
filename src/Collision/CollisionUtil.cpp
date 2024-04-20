@@ -5,7 +5,7 @@ float distanceSquared(vec3 p1, vec3 p2)
     return dot(p1 - p2, p1 - p2);
 }
 
-bool CollisionUtil::collide(Box &obj1, Box &obj2)
+bool CollisionUtil::collide(BoxShape &obj1, BoxShape &obj2)
 {
     vec3 distance = obj2.position - obj1.position;
     vec3 halfSize1 = obj1.size * 0.5f;
@@ -18,7 +18,7 @@ bool CollisionUtil::collide(Box &obj1, Box &obj2)
     return xOverlap && yOverlap && zOverlap;
 }
 
-bool CollisionUtil::collide(Sphere &obj1, Box &obj2)
+bool CollisionUtil::collide(Sphere &obj1, BoxShape &obj2)
 {
     vec3 closestPointOnBox(
         clamp(obj1.position.x, obj2.position.x - obj2.size.x / 2.0f, obj2.position.x + obj2.size.x / 2.0f),
