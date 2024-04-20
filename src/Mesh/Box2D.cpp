@@ -11,10 +11,11 @@ Box2D::~Box2D()
 MeshDataContainer Box2D::generateBoxData(float width, float height)
 {
     vector<vec3> vertices{
-       { -width / 2.0f, -height / 2.0f, 0.0f},
-        -width / 2.0f, height / 2.0f, 0.0f,
-        width / 2.0f, height / 2.0f, 0.0f,
-        width / 2.0f, -height / 2.0f, 0.0f};
+        {-width / 2.0f, -height / 2.0f, 0.0f},
+        {-width / 2.0f, height / 2.0f, 0.0f},
+        {width / 2.0f, height / 2.0f, 0.0f},
+        {width / 2.0f, -height / 2.0f, 0.0f}
+        };
 
     vector<float> normals{
         0.0f, 0.0f, 1.0f,

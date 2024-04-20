@@ -1,10 +1,12 @@
 #pragma once
 
-#include "Object.hpp"
+class RessourceType;
 
-class Ressource: public Object{
-    
+class Ressource
+{
+    RessourceType *res;
+
 public:
-    Ressource();
-    virtual ~Ressource();
+    Ressource(RessourceType* res);
+    virtual ~Ressource() noexcept;
 };

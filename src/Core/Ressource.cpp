@@ -1,11 +1,14 @@
+#include <Core/RessourceType.hpp>
 #include <Core/Ressource.hpp>
 
-Ressource::Ressource()
+
+Ressource::Ressource(RessourceType* res)
 {
-        
+
 }
 
-Ressource::~Ressource()
+Ressource::~Ressource() noexcept
 {
-        
+    delete res;
 }
+

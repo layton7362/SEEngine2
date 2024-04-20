@@ -4,7 +4,6 @@ class RessourceManager
 {
 public:
 
-
 private:
     RessourceManager(){};
     virtual ~RessourceManager(){};

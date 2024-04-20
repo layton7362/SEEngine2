@@ -12,7 +12,7 @@ MeshDataContainer Sphere3D::generateSphereData(float radius)
 {
     vector<float> vertices;
     vector<float> normals;
-    vector<unsigned int> indices;
+    vector<uvec3> indices;
 
     // add top vertex
 

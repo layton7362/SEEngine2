@@ -5,7 +5,7 @@ Material::Material()
     // Empty
 }
 
-Material::Material(std::array<Shader *, ShaderListType::Count> shaders) : Ressource()
+Material::Material(std::array<Shader *, ShaderListType::Count> shaders) : RessourceType()
 {
     this->build(shaders);
 }

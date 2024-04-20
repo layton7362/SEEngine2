@@ -25,6 +25,6 @@ void Object3D::dispose()
         return;
     }
 
-    // Ressource Counter of Mesh change
+    // RessourceType Counter of Mesh change
   
 }

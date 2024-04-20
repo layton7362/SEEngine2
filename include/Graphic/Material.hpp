@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core/Ressource.hpp>
+#include <Core/RessourceType.hpp>
 #include <Core/String.hpp>
 #include <Graphic/Shader.hpp>
 #include <variant>
@@ -18,7 +18,7 @@ using std::array;
 using std::map;
 using std::variant;
 
-class Material : public Ressource, public TraitUniform
+class Material : public RessourceType, public TraitUniform
 {
 protected:
     size_t programId;
