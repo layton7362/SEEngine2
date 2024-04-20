@@ -10,6 +10,10 @@ Mesh::Mesh(const MeshDataContainer &meshData): RessourceType()
     data[MeshData::INDICES] = meshData[MeshData::INDICES];
 }
 
+Mesh::Mesh(): RessourceType()
+{
+}
+
 Mesh::~Mesh() noexcept
 {
     // Empty
@@ -17,7 +21,7 @@ Mesh::~Mesh() noexcept
 
 // MeshDatContainer &Mesh::getData()
 // {
-//     return this->data;
+    // return this->data;
 // }
 
 const vector<vec3> &Mesh::getVertices() const

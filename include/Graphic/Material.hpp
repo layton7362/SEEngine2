@@ -21,10 +21,9 @@ using std::variant;
 class Material : public RessourceType, public TraitUniform
 {
 protected:
-    size_t programId;
+    int programId = -1;
 
     void build(array<Shader *, ShaderListType::Count> &shaders);
-
 public:
     Material();
     Material(array<Shader *, ShaderListType::Count> shaders);
