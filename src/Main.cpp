@@ -5,15 +5,13 @@
 #include <array>
 #include <vector>
 #include <Core/System.hpp>
-#include <Core/Graph.hpp>
 #include <Engine/RenderEngine.hpp>
 #include <Graphic/Window.hpp>
 #include <Graphic/Shader.hpp>
 #include <Graphic/Material.hpp>
 #include <Graphic/Mesh.hpp>
-
+#include <Nodes/SceneTree.hpp>
 #include <Manager/InputManager.hpp>
-
 
 using std::array;
 using std::vector;

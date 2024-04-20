@@ -3,7 +3,7 @@
 #include <map>
 #include <glad/glad.h>
 #include <Interface.hpp>
-#include <Core/Graph.hpp>
+#include <Nodes/Object3D.hpp>
 #include <Graphic/Mesh.hpp>
 
 class Object3D;

@@ -1,7 +1,7 @@
 #include <GameScene/GameScenePlayground.hpp>
 #include <Graphic/Material.hpp>
 #include <Graphic/Mesh.hpp>
-#include <Core/Graph.hpp>
+#include <Nodes/Object3D.hpp>
 #include <vector>
 
 using std::vector;

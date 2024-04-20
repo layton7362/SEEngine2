@@ -1,45 +1,17 @@
-#include "Core/Graph.hpp"
+#include <Nodes/SceneTree.hpp>
 #include <algorithm>
 #include <Core/Log.hpp>
 #include <Utils.hpp>
-
-bool Node::add_child(Node *child)
-{
-    if (child->parent != nullptr)
-    {
-        return false;
-    }
-
-    child->parent = this;
-    return true;
-}
-
-bool Node::remove_child(Node *child)
-{
-    auto it = std::find(children.begin(), children.end(), child);
-    if (it != children.end())
-    {
-        children.erase(it);
-        child->parent = nullptr;
-        return true;
-    }
-    return false;
-}
-
-void Node::enter()
-{
-}
-
-void Node::update(const float& delta )
-{
-}
+#include <GameScene/GameScenePlayground.hpp>
 
 SceneTree::SceneTree()
 {
     nodes = vector<Node *>(0);
 }
 
-SceneTree::~SceneTree() {}
+SceneTree::~SceneTree()
+{
+}
 
 void SceneTree::addNode(Node *node)
 {
@@ -88,7 +60,6 @@ void SceneTree::init()
 
     //  TODO REMOVE
     mat = new DefaultMaterial();
-
     this->changeScene(new GameScenePlayground(*this));
 }
 
@@ -132,14 +103,6 @@ void SceneTree::renderUpdate()
     mat->useMaterial();
     this->renderEngine->render();
 }
-
-#define DisposeAndDelete(obj) \
-    if (obj != nullptr)       \
-    {                         \
-        obj->dispose();       \
-        delete obj;           \
-        obj = nullptr;        \
-    }
 
 void SceneTree::dispose()
 {

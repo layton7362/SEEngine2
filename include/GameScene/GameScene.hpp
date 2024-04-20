@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Nodes/SceneTree.hpp>
 #include <Interface.hpp>
 
 
