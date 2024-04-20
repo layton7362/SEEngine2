@@ -1,14 +1,11 @@
 #pragma once
-
 #include <vector>
 #include <Core/Object.hpp>
-    
-using std::vector;
 
 class Node : public Object
 {
 private:
-    vector<Node *> children;
+    std::vector<Node *> children;
 
 public:
     Node *parent = nullptr;

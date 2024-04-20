@@ -1,30 +1,21 @@
 #pragma once
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
-#include <Core/Object.hpp>
-
-#include <Engine/RenderEngine.hpp>
-#include <Engine/PhysicEngine.hpp>
-
-#include <GameScene/GameScene.hpp>
-#include <Nodes/Node.hpp>
-
-using namespace glm;
+#include <vector>
 
 class RenderEngine;
+class PhysicWorld;
 class GameScene;
+class DefaultMaterial;
+class Node;
 
 class SceneTree
 {
 private:
-    vector<Node *> nodes;
+    std::vector<Node *> nodes;
     RenderEngine *renderEngine = nullptr;
     PhysicWorld *physicWorld = nullptr;
     GameScene *scene = nullptr;
     DefaultMaterial *mat;
-
 public:
     float delta;
 public:
