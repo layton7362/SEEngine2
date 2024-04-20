@@ -18,11 +18,11 @@ void GameScenePlayground::init()
 {
     DefaultMaterial *material = new DefaultMaterial();
 
-    float vertices[] = {
-        0.5f, 0.5f, 0.0f,   // top right
-        0.5f, -0.5f, 0.0f,  // bottom right
-        -0.5f, -0.5f, 0.0f, // bottom left
-        -0.5f, 0.5f, 0.0f   // top left
+    vec3 vertices[] = {
+       { 0.5f, 0.5f, 0.0f},   // top right
+       { 0.5f, -0.5f, 0.0f},  // bottom right
+       { -0.5f, -0.5f, 0.0f}, // bottom left
+       { -0.5f, 0.5f, 0.0f}   // top left
     };
     unsigned int indices[] = {
         // note that we start from 0!
@@ -30,7 +30,7 @@ void GameScenePlayground::init()
         1, 2, 3  // second Triangle
     };
 
-    vector<float> vertices_vec(std::begin(vertices), std::end(vertices));
+    vector<vec3> vertices_vec(std::begin(vertices), std::end(vertices));
     vector<unsigned int> indices_vec(std::begin(indices), std::end(indices));
     MeshDataContainer data;
     data[MeshData::VERTICES] = vertices_vec;
@@ -38,13 +38,13 @@ void GameScenePlayground::init()
 
     Mesh *mesh = new Mesh(data);
 
-    obj = new Object3D();
-    obj->mesh = mesh;
-    obj->material = new DefaultMaterial();
-    tree->addNode(obj);
+    // obj = new Object3D();
+    // obj->mesh = mesh;
+    // obj->material = new DefaultMaterial();
+    // tree->addNode(obj);
 
     player = new Object3D();
-    player->mesh = new Box2D(0.5, 0.5);
+    player->mesh = mesh;
     player->material = new DefaultMaterial();
     tree->addNode(player);
 }

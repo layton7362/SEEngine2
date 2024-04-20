@@ -20,9 +20,9 @@ Mesh::~Mesh() noexcept
 //     return this->data;
 // }
 
-const vector<float> &Mesh::getVertices() const
+const vector<vec3> &Mesh::getVertices() const
 {
-    return std::get<vector<float>>(data[MeshData::VERTICES]);
+    return std::get<vector<vec3>>(data[MeshData::VERTICES]);
 }
 
 const vector<float> &Mesh::getNormals() const {

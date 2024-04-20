@@ -4,10 +4,12 @@
 #include <array>
 #include <variant>
 #include <vector>
+#include <glm/glm.hpp>
 
 using std::array;
 using std::variant;
 using std::vector;
+using glm::vec3;
 
 struct MeshData
 {
@@ -23,7 +25,8 @@ struct MeshData
     inline static const unsigned int Count = 6;
 };
 
-using Container = variant<vector<float>,vector<unsigned int>>;
+
+using Container = variant<vector<vec3>, vector<float>,vector<unsigned int>>;
 using MeshDataContainer = array<Container, MeshData::Count>;
 
 class Mesh : public Ressource
@@ -38,7 +41,7 @@ public:
 
     MeshDataContainer &getData();
 
-    const vector<float> &getVertices() const;
+    const vector<vec3> &getVertices() const;
     const vector<float> &getNormals() const;
     const vector<float> &getColors() const;
     const vector<float> &getUV1() const;

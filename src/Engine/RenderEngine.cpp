@@ -14,7 +14,7 @@ void OpenGLRenderEngine::removeObject(Object3D *obj)
 
 void OpenGLRenderEngine::buildMesh(Object3D *obj)
 {
-    vector<float> vertices = obj->mesh->getVertices();
+    vector<vec3> vertices = obj->mesh->getVertices();
     vector<unsigned int> indices = obj->mesh->getIndices();
 
     unsigned int VBO, VAO, EBO;
@@ -25,7 +25,8 @@ void OpenGLRenderEngine::buildMesh(Object3D *obj)
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertices.size(), vertices.data(), GL_STATIC_DRAW);
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vec3) * vertices.size(), reinterpret_cast<float*>(vertices.data()), GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indices.size(), indices.data(), GL_STATIC_DRAW);
