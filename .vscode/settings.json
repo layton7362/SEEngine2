@@ -120,6 +120,7 @@
     "ratio": "cpp",
     "iomanip": "cpp",
     "forward_list": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "*.ipp": "cpp"
   }
 }

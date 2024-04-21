@@ -1,3 +1,1 @@
 #include <Manager/RessourceManager.hpp>
-
-

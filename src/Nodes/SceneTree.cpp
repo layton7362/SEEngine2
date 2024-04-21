@@ -23,7 +23,7 @@ void SceneTree::addNode(Node *node)
     if (!hasNode(node))
     {
         nodes.push_back(node);
-        if (Object3D *object = ToSubclass(Object3D, node))
+        if (Object3D *object = toSubclass(Object3D, node))
         {
             this->renderEngine->addObject(object);
         }

@@ -1,10 +1,11 @@
-
 #include <Core/System.hpp>
 #include <Graphic/Window.hpp>
 #include <Nodes/SceneTree.hpp>
 
 #include <Graphic/Material.hpp>
 #include <Core/Ressource.hpp>
+
+#include <Types.hpp>
 
 using std::array;
 using std::vector;
@@ -13,6 +14,8 @@ SceneTree tree;
 
 int main()
 {
+    Ressource<Material> res;
+
     Window window(800, 600, "Game");
     window.init_window();
 

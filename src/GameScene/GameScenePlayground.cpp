@@ -44,7 +44,7 @@ void GameScenePlayground::init()
     // tree->addNode(obj);
 
     player = new Object3D();
-    player->mesh = new Box2D(2,2);
+    player->mesh = new Box2D(1,1);
     player->material = new DefaultMaterial();
     tree->addNode(player);
 }

@@ -9,6 +9,7 @@
 template <class R>
 class Ressource
 {
+    friend class RessourceManager;
 private:
     R *resType = nullptr;
     int *counter = nullptr;
