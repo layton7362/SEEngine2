@@ -22,7 +22,7 @@ class ImageCode
         BMP = 2,
         PNG = 3,
 
-    }
+    };
 };
 
 class ImageManager
