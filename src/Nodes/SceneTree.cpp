@@ -2,7 +2,7 @@
 #include <Core/Log.hpp>
 #include <Utils.hpp>
 #include <GameScene/GameScenePlayground.hpp>
-#include <Engine/RenderEngine.hpp>
+#include <Engine/OpenGLRenderEngine.hpp>
 #include <Engine/PhysicEngine.hpp>
 #include <GameScene/GameScene.hpp>
 #include <Graphic/DefaultMaterial.hpp>
