@@ -121,6 +121,9 @@
     "iomanip": "cpp",
     "forward_list": "cpp",
     "variant": "cpp",
-    "*.ipp": "cpp"
+    "*.ipp": "cpp",
+    "chrono": "cpp",
+    "format": "cpp",
+    "span": "cpp"
   }
 }

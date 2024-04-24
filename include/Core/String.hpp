@@ -39,8 +39,8 @@ public:
     const char *c_str();
     char char_at(size_t pos) const;
 
-    inline static String convertToString(const float &value);
-    inline static String convertToString(const int &value);
+    static String convertToString(const float &value);
+        static String convertToString(const int &value);
 
     friend std::ostream &operator<<(std::ostream &os, const String &str);
 };

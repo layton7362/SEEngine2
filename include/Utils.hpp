@@ -10,7 +10,7 @@
         obj->dispose();       \
         delete obj;           \
         obj = nullptr;        \
-    }
+    }                         \
 
 template <typename T>
 inline static bool isBetween(T val ,float max, float min = 0){

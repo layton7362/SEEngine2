@@ -16,11 +16,11 @@ String::String(const String &other) : data(nullptr), length(other.length)
     strcpy(data, other.data);
 }
 
-String::String(const int &other) : String(convertToString(other))
+String::String(const float &other) : String(convertToString(other))
 {
 }
 
-String::String(const float &other) : String(convertToString(other))
+String::String(const int &other) : String(convertToString(other))
 {
 }
 
@@ -120,13 +120,14 @@ String &String::append(char c)
     return *this;
 }
 
-String String::convertToString(const int &value)
+
+String String::convertToString(const float &value)
 {
     std::string str = std::to_string(value);
     return String(str.c_str());
 }
 
-String String::convertToString(const float &value)
+String String::convertToString(const int &value)
 {
     std::string str = std::to_string(value);
     return String(str.c_str());

@@ -1,6 +1,6 @@
 #include <Core/Log.hpp>
 #include <Core/Log.hpp>
-#include <Test/Test.hpp>
+#include <Test.hpp>
 
 
 bool test_log_stack()

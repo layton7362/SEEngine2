@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Main Program",
+      "name": "Main Debug ",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
@@ -22,14 +22,14 @@
       "preLaunchTask": "Scons executer"
     },
     {
-      "name": "C/C++ Test",
+      "name": "Test Debug",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": true,
+      "externalConsole": false,
       "cwd": "f:/MyProgProject/OpenGLC++/test",
-      "program": "f:/MyProgProject/OpenGLC++/build_test/Main.exe",
+      "program": "f:/MyProgProject/OpenGLC++/build_test/Test.exe",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
@@ -38,7 +38,16 @@
           "text": "-enable-pretty-printing",
           "ignoreFailures": true
         }
-      ]
+      ],
+      "preLaunchTask": "Scons Test executer"
+    },
+    {
+      "name": "Python Debugger: Current File with Arguments",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "args": "${command:pickArgs}"
     },
     {
       "name": "C/C++ Runner: Debug Session",
@@ -47,8 +56,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "f:/MyProgProject/OpenGLC++/src/Core",
-      "program": "f:/MyProgProject/OpenGLC++/src/Core/build/Debug/outDebug",
+      "cwd": "f:/MyProgProject/OpenGLC++/test/src",
+      "program": "f:/MyProgProject/OpenGLC++/test/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

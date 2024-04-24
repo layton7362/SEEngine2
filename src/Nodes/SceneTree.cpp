@@ -6,6 +6,7 @@
 #include <Engine/PhysicEngine.hpp>
 #include <GameScene/GameScene.hpp>
 #include <Graphic/DefaultMaterial.hpp>
+#include <Graphic/Camera.hpp>
 #include <Nodes/Node.hpp>
 #include <Nodes/SceneTree.hpp>
 
@@ -26,6 +27,7 @@ void SceneTree::addNode(Node *node)
         if (Object3D *object = toSubclass(Object3D, node))
         {
             this->renderEngine->addObject(object);
+            this->renderEngine->addCameraUniform(this->cam, object);
         }
         node->enter();
     }
@@ -62,6 +64,7 @@ void SceneTree::init()
 {
     this->renderEngine = new OpenGLRenderEngine();
     this->physicWorld = new PhysicWorld();
+    this->cam = new Camera();
 
     //  TODO REMOVE
     mat = new DefaultMaterial();
@@ -105,6 +108,7 @@ void SceneTree::physikUpdate()
 void SceneTree::renderUpdate()
 {
     this->renderEngine->renderBegin();
+    // this->renderEngine->cameraUniform(this->cam,  );
     mat->useMaterial();
     this->renderEngine->render();
 }

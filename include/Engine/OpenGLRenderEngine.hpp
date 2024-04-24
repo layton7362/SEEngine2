@@ -2,6 +2,8 @@
 
 #include <Engine/RenderEngine.hpp>
 
+class Camera;
+
 class OpenGLRenderEngine : public RenderEngine
 {
 private:
@@ -9,14 +11,15 @@ private:
 
 public:
     OpenGLRenderEngine();
-    virtual ~OpenGLRenderEngine() noexcept;
-    virtual void addObject(Object3D *mesh) override;
-    virtual void removeObject(Object3D *mesh) override;
+    ~OpenGLRenderEngine() noexcept;
 
-    virtual void buildMesh(Object3D *mesh) override;
-    virtual void dispose_meshes() override;
-    virtual void renderBegin() override;
-    virtual void render() override;
-    virtual void renderEnd() override;
-    virtual void dispose() override;
+    void addObject(Object3D *mesh) override;
+    void removeObject(Object3D *mesh) override;
+    void buildMesh(Object3D *mesh) override;
+    void dispose_meshes() override;
+    void renderBegin() override;
+    void addCameraUniform(Camera *, Object3D *) override;
+    void render() override;
+    void renderEnd() override;
+    void dispose() override;
 };

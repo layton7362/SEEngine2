@@ -1,7 +1,5 @@
+#include <Graphic/Camera.hpp>
 #include <Engine/OpenGLRenderEngine.hpp>
-
-
-
 
 
 OpenGLRenderEngine::OpenGLRenderEngine()
@@ -61,6 +59,17 @@ void OpenGLRenderEngine::renderBegin()
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 }
+
+void OpenGLRenderEngine::addCameraUniform(Camera* cam, Object3D* obj) 
+{;
+    const GLint& progId =  obj->material->getProgramId();
+    const GLint locView = glGetUniformLocation(progId, "view");
+    const GLint locProj = glGetUniformLocation(progId, "projection");
+
+    obj->addUniform(locView, UniformCall(TraitUniform::setMatrix4(locView, cam->view)));
+    obj->addUniform(locProj, UniformCall(TraitUniform::setMatrix4(locProj, cam->projection)));
+}
+
 
 void OpenGLRenderEngine::render()
 {

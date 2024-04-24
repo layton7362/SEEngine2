@@ -1,6 +1,21 @@
 #include <Core/String.hpp>
 #include <Core/Log.hpp>
-#include <Test/Test.hpp>
+#include <Test.hpp>
+
+bool test_compare()
+{
+    String a = "Hallo";
+    String b = "Hallo";
+
+    RET_IF_CMP_FAIL(a, b)
+    RET_IF_NOT_CMP_FAIL(a, String("Hallo2"))
+
+    RET_IF_CMP_FAIL(a, "Hallo")
+    RET_IF_NOT_CMP_FAIL(a, "Hallo2")
+
+    Log::info("test_compare is ok");
+    return true;
+}
 
 bool test_assignment(){
 
@@ -32,21 +47,6 @@ bool test_assignment(){
     RET_IF_NOT_CMP_FAIL(concat, "i try to concat the text")
 
     Log::info("test_assigment is ok");
-    return false;
-}
-
-bool test_compare()
-{
-    String a = "Hallo";
-    String b = "Hallo";
-
-    RET_IF_CMP_FAIL(a, b)
-    RET_IF_NOT_CMP_FAIL(a, String("Hallo2"))
-
-    RET_IF_CMP_FAIL(a, "Hallo")
-    RET_IF_NOT_CMP_FAIL(a, "Hallo2")
-
-    Log::info("test_compare is ok");
     return true;
 }
 

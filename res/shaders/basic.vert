@@ -11,7 +11,12 @@ uniform float shift_y = 0;
 uniform float shift_x = 0;
 
 uniform mat4 transformation;
+uniform mat4 view;
+uniform mat4 projection;
+
 
 void main() {
-    gl_Position = transformation * vec4(position.x + shift_x, position.y + shift_y, position.z, 1.0);
+    mat4 matrix = projection * view * transformation;
+    // gl_Position = matrix * vec4(position, 1.0);
+    gl_Position =  transformation * vec4(position, 1.0);
 }

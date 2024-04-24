@@ -7,15 +7,20 @@ class PhysicWorld;
 class GameScene;
 class DefaultMaterial;
 class Node;
+class Camera;
 
 class SceneTree
 {
 private:
+    
     std::vector<Node *> nodes;
+    Camera* cam;    
     RenderEngine *renderEngine = nullptr;
     PhysicWorld *physicWorld = nullptr;
     GameScene *scene = nullptr;
     DefaultMaterial *mat;
+
+
 public:
     float delta;
 public:

@@ -13,6 +13,7 @@
       "intelliSenseMode": "windows-gcc-x64",
       "compilerArgs": [
         "-Iinclude",
+        "-Itest/include",
         "-IF:/MyProgProject/Common/include"
       ]
     }
