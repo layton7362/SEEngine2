@@ -5,7 +5,11 @@
 /build_test
 
 
+/res/audio
+
 # Ignore Files
 
 *.o
 *.exe
+
+
