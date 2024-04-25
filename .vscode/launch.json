@@ -18,6 +18,25 @@
           "text": "-enable-pretty-printing",
           "ignoreFailures": true
         }
+      ]
+    },
+    {
+      "name": "Main Debug && Build ",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "cwd": "f:/MyProgProject/OpenGLC++",
+      "program": "f:/MyProgProject/OpenGLC++/build/Main.exe",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
       ],
       "preLaunchTask": "Scons executer"
     },
@@ -56,8 +75,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "f:/MyProgProject/OpenGLC++/test/src",
-      "program": "f:/MyProgProject/OpenGLC++/test/src/build/Debug/outDebug",
+      "cwd": "f:/MyProgProject/OpenGLC++/src/Engine",
+      "program": "f:/MyProgProject/OpenGLC++/src/Engine/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

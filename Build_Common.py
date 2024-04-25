@@ -17,13 +17,15 @@ def print_dep():
     print("============")
 
 LIBPATH = [
-    "F:/MyProgProject/Common/libs"
+    "F:/MyProgProject/Common/libs",
+    "F:/MyProgProject/Common/libs/bullet3/Release"
     ]
 
 CPPFILES = glob(f'{project_directory}/src/**/*.c*', recursive=True)
         
 LIBS = [
-    "glfw3"
+    "glfw3",
+    "OpenAL32"
     ]
 
 HEADERPATH = [

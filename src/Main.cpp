@@ -14,7 +14,6 @@ SceneTree tree;
 
 int main()
 {
-    Ressource<Material> res;
 
     Window window(800, 600, "Game");
     window.init_window();

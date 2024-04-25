@@ -6,11 +6,13 @@
 #include <vector>
 #include <glm/glm.hpp>
 
+using glm::uvec3;
+using glm::vec2;
+using glm::vec3;
+using glm::vec4;
 using std::array;
 using std::variant;
 using std::vector;
-using glm::vec3;
-using glm::uvec3;
 
 struct MeshData
 {
@@ -26,8 +28,7 @@ struct MeshData
     inline static const unsigned int Count = 6;
 };
 
-
-using Container = variant<vector<vec3>, vector<uvec3>, vector<float>>;
+using Container = variant<vector<vec2>, vector<vec3>, vector<vec4>, vector<uvec3>, vector<float>>;
 using MeshDataContainer = array<Container, MeshData::Count>;
 
 class Mesh : public RessourceType
@@ -44,9 +45,16 @@ public:
     MeshDataContainer &getData();
 
     const vector<vec3> &getVertices() const;
-    const vector<float> &getNormals() const;
-    const vector<float> &getColors() const;
-    const vector<float> &getUV1() const;
-    const vector<float> &getUV2() const;
+    const vector<vec3> &getNormals() const;
+    const vector<vec4> &getColors() const;
+    const vector<vec2> &getUV1() const;
+    const vector<vec2> &getUV2() const;
     const vector<uvec3> &getIndices() const;
+
+    // unsigned int getVerticesSize() const;
+    // unsigned int getNormalsSize() const;
+    // unsigned int getColorsSize() const;
+    // unsigned int getUV1Size() const;
+    // unsigned int getUV2Size() const;
+    // unsigned int getIndicesSize() const;
 };

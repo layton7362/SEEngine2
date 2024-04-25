@@ -29,23 +29,24 @@ const vector<vec3> &Mesh::getVertices() const
     return std::get<vector<vec3>>(data[MeshData::VERTICES]);
 }
 
-const vector<float> &Mesh::getNormals() const {
-    return std::get<vector<float>>(data[MeshData::NORMALS]);
+const vector<vec3> &Mesh::getNormals() const {
+    return std::get<vector<vec3>>(data[MeshData::NORMALS]);
 }
 
-const vector<float> &Mesh::getColors() const {
-    return std::get<vector<float>>(data[MeshData::COLORS]);
+const vector<vec4> &Mesh::getColors() const {
+    return std::get<vector<vec4>>(data[MeshData::COLORS]);
 }
 
-const vector<float> &Mesh::getUV1() const {
-    return std::get<vector<float>>(data[MeshData::UV1]);
+const vector<vec2> &Mesh::getUV1() const {
+    return std::get<vector<vec2>>(data[MeshData::UV1]);
 }
 
-const vector<float> &Mesh::getUV2() const {
-    return std::get<vector<float>>(data[MeshData::UV2]);
+const vector<vec2> &Mesh::getUV2() const {
+    return std::get<vector<vec2>>(data[MeshData::UV2]);
 }
 
 const vector<uvec3> &Mesh::getIndices() const
 {               
     return std::get<vector<uvec3>>(data[MeshData::INDICES]);
 }
+

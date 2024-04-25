@@ -3,6 +3,7 @@
 #include <Utils.hpp>
 #include <GameScene/GameScenePlayground.hpp>
 #include <Engine/OpenGLRenderEngine.hpp>
+#include <Engine/AudioEngine.hpp>
 #include <Engine/PhysicEngine.hpp>
 #include <GameScene/GameScene.hpp>
 #include <Graphic/DefaultMaterial.hpp>
@@ -12,11 +13,24 @@
 
 SceneTree::SceneTree()
 {
-    nodes = vector<Node *>(0);
 }
 
 SceneTree::~SceneTree()
 {
+}
+
+void SceneTree::init()
+{
+    this->renderEngine = new OpenGLRenderEngine();
+    this->physicWorld = new PhysicWorld();
+    this->cam = new Camera();
+    this->audioEngine = new AudioEngine();
+    this->audioEngine->init();
+    // this->audioEngine->load("res/audio/Float 11 - Seep.wav");
+    // this->audioEngine->play();
+    //  TODO REMOVE
+    mat = new DefaultMaterial();
+    this->changeScene(new GameScenePlayground(*this));
 }
 
 void SceneTree::addNode(Node *node)
@@ -60,16 +74,6 @@ bool SceneTree::hasNode(Node *node)
     return it != nodes.end();
 }
 
-void SceneTree::init()
-{
-    this->renderEngine = new OpenGLRenderEngine();
-    this->physicWorld = new PhysicWorld();
-    this->cam = new Camera();
-
-    //  TODO REMOVE
-    mat = new DefaultMaterial();
-    this->changeScene(new GameScenePlayground(*this));
-}
 
 void SceneTree::changeScene(GameScene *scene)
 {

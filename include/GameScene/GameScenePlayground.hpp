@@ -6,8 +6,8 @@ class Object3D;
 class GameScenePlayground : public GameScene
 {
 private:
-    Object3D *player;
     Object3D *obj;
+    Object3D *obj2;
 
 public:
     GameScenePlayground(SceneTree &tree);

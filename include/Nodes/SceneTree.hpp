@@ -8,21 +8,24 @@ class GameScene;
 class DefaultMaterial;
 class Node;
 class Camera;
+class AudioEngine;
 
 class SceneTree
 {
 private:
-    
+    // std::vector<Camera *> cams;
     std::vector<Node *> nodes;
-    Camera* cam;    
     RenderEngine *renderEngine = nullptr;
     PhysicWorld *physicWorld = nullptr;
-    GameScene *scene = nullptr;
+    GameScene * scene = nullptr;
+    AudioEngine* audioEngine = nullptr;
+    
     DefaultMaterial *mat;
-
 
 public:
     float delta;
+    Camera* cam;    
+
 public:
 
     SceneTree();
