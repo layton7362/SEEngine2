@@ -1,6 +1,7 @@
 from itertools import count
 import sys
 
+DefaultEnvironment(tools=[])
 isTestBuild = len(list(filter(lambda s: s.count("test"), sys.argv))) > 0
 
 if isTestBuild:
