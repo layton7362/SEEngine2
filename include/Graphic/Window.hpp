@@ -19,5 +19,9 @@ public:
     int init_window();
     void processInput();
     void terminate();
+    void swapBuffers();
+    bool isClosing();
+
+    void pollEvents();
 
 };

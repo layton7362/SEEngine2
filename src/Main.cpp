@@ -28,7 +28,7 @@ int main()
 
     float last_second = System::getTime();
 
-    while (!glfwWindowShouldClose(window.window))
+    while (!window.isClosing())
     {
         double current_time = System::getTime();
         double elapsed_time = current_time - time_previous;
@@ -41,14 +41,11 @@ int main()
             tree.mainUpdate();
             tree.physikUpdate();
             tree.renderUpdate();
-            glfwSwapBuffers(window.window);
+            window.swapBuffers();
         }
 
-        glfwPollEvents();
+        window.pollEvents();
     }
-
-    // dispose()
-
-    glfwTerminate();
+    window.terminate();
     return 0;
 }

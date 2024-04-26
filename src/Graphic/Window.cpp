@@ -10,7 +10,6 @@ void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods
     InputManager::pressedKeys[key] = action == GLFW_REPEAT || action == GLFW_PRESS;
 }
 
-
 void framebufferSizeCallback(GLFWwindow *window, int width, int height)
 {
     glViewport(0, 0, width, height);
@@ -62,4 +61,19 @@ void Window::processInput()
 void Window::terminate()
 {
     glfwTerminate();
+}
+
+void Window::swapBuffers()
+{
+    glfwSwapBuffers(this->window);
+}
+
+bool Window::isClosing()
+{
+    return glfwWindowShouldClose(this->window);
+}
+
+void Window::pollEvents()
+{
+    glfwPollEvents();
 }

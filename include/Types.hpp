@@ -5,6 +5,9 @@
 #include <Core/Ressource.hpp>
 #include <glm/glm.hpp>
 
+template<typename T>
+using Res = Ressource<T>;
+
 using glm::vec2;
 using glm::vec3;
 using glm::vec4;
