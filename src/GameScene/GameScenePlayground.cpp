@@ -8,11 +8,10 @@
 #include <Nodes/SceneTree.hpp>
 #include <GameScene/GameScenePlayground.hpp>
 #include <Types.hpp>
-
+#include <Manager/InputManager.hpp>
 #include <Mesh/Sphere2D.hpp>
 #include <Mesh/Box2D.hpp>
 #include <Mesh/Box3D.hpp>
-
 
 using std::vector;
 
@@ -43,7 +42,14 @@ void GameScenePlayground::init()
 
 void GameScenePlayground::update(const float &delta)
 {
-    obj->rotate(0.5 * delta, AXIS_Y);
+    if (InputManager::isPressed(KeyCode::R))
+        obj->rotate(0.5 * delta, AXIS_Y);   
+    if (InputManager::isPressed(KeyCode::E))
+        obj->rotate(-0.5 * delta, AXIS_Y);
+    if (InputManager::isPressed(KeyCode::S))
+        obj->scale(vec3(1)+vec3(1)* delta);
+    if (InputManager::isPressed(KeyCode::A))
+        obj->scale(vec3(1)-vec3(1)* delta);
 }
 
 void GameScenePlayground::dispose()
