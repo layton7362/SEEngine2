@@ -5,6 +5,8 @@
 #include <Interface.hpp>
 #include <Nodes/Object3D.hpp>
 #include <Graphic/Mesh.hpp>
+#include <Types.hpp>
+
 
 class Object3D;
 class Camera;
@@ -19,7 +21,7 @@ public:
     virtual void buildMesh(Object3D *mesh) = 0;
     virtual void dispose_meshes() = 0;
 
-    virtual void renderBegin() = 0;
+    virtual void renderBegin(const Color4& clear) = 0;
     virtual void addCameraUniform(Camera*,Object3D*) = 0;
 
     virtual void render() = 0;

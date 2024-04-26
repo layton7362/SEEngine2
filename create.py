@@ -51,18 +51,27 @@ def create_folder(folder_name):
         print(f"Der Ordner '{folder_name}' existiert bereits.")
 
 def main():
-    if len(sys.argv) != 3:
-        print("Verwendung: python script.py FOLDER_NAME FILENAME")
+    if len(sys.argv) not in [2,3]:
+        print("Verwendung: python script.py FOLDER_NAME FILENAME or")
+        print("Verwendung: python script.py FILENAME")
         return
+    
+    if len(sys.argv) == 3:
+        folder_name = sys.argv[1]
+        filename = sys.argv[2]
 
-    folder_name = sys.argv[1]
-    filename = sys.argv[2]
+        create_folder(f"src/{folder_name}")
+        create_file_source(os.path.join("src", folder_name),folder_name , filename)
 
-    create_folder(f"src/{folder_name}")
-    create_file_source(os.path.join("src", folder_name),folder_name , filename)
+        create_folder(f"include/{folder_name}")
+        create_file_header(os.path.join("include", folder_name), folder_name, filename)
+    
+    # if len(sys.argv) == 2:
+    #     filename = sys.argv[1]
 
-    create_folder(f"include/{folder_name}")
-    create_file_header(os.path.join("include", folder_name), folder_name, filename)
+    #     create_file_source("src", "", filename)
+
+    #     create_file_header("include", "", filename)
 
 if __name__ == "__main__":
     main()

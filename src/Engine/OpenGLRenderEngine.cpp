@@ -72,10 +72,11 @@ void OpenGLRenderEngine::buildMesh(Object3D *obj)
     this->render_id[obj] = new RenderData{VAO, VBO, EBO};
 }
 
-void OpenGLRenderEngine::renderBegin()
-{
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+void OpenGLRenderEngine::renderBegin(const Color4& clear)
+{   
+    glClearColor(clear.r, clear.g, clear.b, clear.a);
     glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+    
 }
 
 void OpenGLRenderEngine::addCameraUniform(Camera *cam, Object3D *obj)

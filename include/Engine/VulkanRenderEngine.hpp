@@ -14,7 +14,7 @@
 
 //     void addObject(Object3D *obj);
 //     void removeObject(Object3D *obj);
-//     void renderBegin();
+//     void renderBegin(const );
 //     void render();
 //     void renderEnd();
 //     void dispose_meshes();

@@ -1,0 +1,8 @@
+{
+    "gameTitle": "MyGame",
+    "fps": 60.0,
+    "window": {
+        "width": 800,
+        "height": 600
+    }
+}

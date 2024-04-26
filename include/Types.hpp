@@ -8,11 +8,18 @@
 template<typename T>
 using Res = Ressource<T>;
 
+
 using glm::vec2;
 using glm::vec3;
 using glm::vec4;
+using glm::uvec2;
+using glm::uvec3;
+using glm::uvec4;
 using glm::mat3;
 using glm::mat4;
+
+using Color3 = vec3;
+using Color4 = vec4;
 
 using ubyte = unsigned char;
 using byte = char;

@@ -17,7 +17,7 @@ public:
     void removeObject(Object3D *mesh) override;
     void buildMesh(Object3D *mesh) override;
     void dispose_meshes() override;
-    void renderBegin() override;
+    void renderBegin(const Color4& clear) override;
     void addCameraUniform(Camera *, Object3D *) override;
     void render() override;
     void renderEnd() override;

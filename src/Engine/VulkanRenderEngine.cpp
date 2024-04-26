@@ -54,7 +54,7 @@
 //     this->render_id[obj] = new RenderData{vertexBuffer, vertexBufferMemory, indexBuffer, indexBufferMemory};
 // }
 
-// void VulkanRenderEngine::renderBegin()
+// void VulkanRenderEngine::renderBegin(const )
 // {
 //     // TODO: Begin Vulkan rendering
 // }

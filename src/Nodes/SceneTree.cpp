@@ -26,7 +26,8 @@ void SceneTree::init()
     this->cam = new Camera();
     this->audioEngine = new AudioEngine();
     this->audioEngine->init();
-    // this->audioEngine->load("res/audio/Float 11 - Seep.wav");
+
+    // this->audioEngine->load("_res/audio/Float 11 - Seep.wav");
     // this->audioEngine->play();
     //  TODO REMOVE
     mat = new DefaultMaterial();
@@ -74,7 +75,6 @@ bool SceneTree::hasNode(Node *node)
     return it != nodes.end();
 }
 
-
 void SceneTree::changeScene(GameScene *scene)
 {
     if (scene == nullptr)
@@ -111,8 +111,7 @@ void SceneTree::physikUpdate()
 
 void SceneTree::renderUpdate()
 {
-    this->renderEngine->renderBegin();
-    // this->renderEngine->cameraUniform(this->cam,  );
+    this->renderEngine->renderBegin(clearColor);
     mat->useMaterial();
     this->renderEngine->render();
 }

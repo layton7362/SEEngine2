@@ -2,8 +2,8 @@
 
 DefaultMaterial::DefaultMaterial() : Material()
 {
-    ShaderVertex *vs = new ShaderVertex("res/shaders/basic.vert");
-    ShaderFragment *fs = new ShaderFragment("res/shaders/basic.frag");
+    ShaderVertex *vs = new ShaderVertex("_res/shaders/basic.vert");
+    ShaderFragment *fs = new ShaderFragment("_res/shaders/basic.frag");
 
     std::array<Shader *, ShaderListType::Count> shaders;
 

@@ -2,6 +2,8 @@
 #include <Graphic/Window.hpp>
 #include <Nodes/SceneTree.hpp>
 
+#include <Misc/Config.hpp>
+
 #include <Graphic/Material.hpp>
 #include <Core/Ressource.hpp>
 
@@ -14,13 +16,13 @@ SceneTree tree;
 
 int main()
 {
-
-    Window window(800, 600, "Game");
+    uvec2 windowSize = config.windowSize();
+    Window window(windowSize.x, windowSize.y, config.gameTitle());
     window.init_window();
 
     tree.init();
 
-    const double FRAME_RATE = 60.0f;
+    const double FRAME_RATE = config.fps();
     const double FRAME_TIME = 1.0f / FRAME_RATE;
 
     double time_start = System::getTime();

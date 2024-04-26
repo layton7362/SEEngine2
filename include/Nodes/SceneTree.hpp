@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <Types.hpp>
 
 class RenderEngine;
 class PhysicWorld;
@@ -21,6 +22,8 @@ private:
     AudioEngine* audioEngine = nullptr;
     
     DefaultMaterial *mat;
+
+    Color4 clearColor = Color4(0.2f, 0.3f, 0.3f, 1.0f);
 
 public:
     float delta;
