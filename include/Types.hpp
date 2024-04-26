@@ -8,7 +8,6 @@
 template<typename T>
 using Res = Ressource<T>;
 
-
 using glm::vec2;
 using glm::vec3;
 using glm::vec4;
@@ -27,3 +26,4 @@ using byte = char;
 constexpr vec3 AXIS_X = glm::vec3(1.0f, 0.0f, 0.0f); 
 constexpr vec3 AXIS_Y = glm::vec3(0.0f, 1.0f, 0.0f); 
 constexpr vec3 AXIS_Z = glm::vec3(0.0f, 0.0f, 1.0f); 
+

@@ -1,6 +1,5 @@
-#pragma once 
+#pragma once
 
-#include <Utils.hpp>
 
 struct KeyCode
 {
@@ -71,10 +70,10 @@ struct KeyCode
         F11 = 300,
         F12 = 301,
 
-        ARROW_UP = 265,
-        ARROW_DOWN = 264,
-        ARROW_LEFT = 263,
         ARROW_RIGHT = 262,
+        ARROW_LEFT = 263,
+        ARROW_DOWN = 264,
+        ARROW_UP = 265,
 
         PLUS = 43,
         MINUS = 45,
@@ -91,7 +90,7 @@ struct KeyCode
     };
 };
 
-#define MAX  400
+#define MAX 400
 class InputManager
 {
 public:
@@ -99,32 +98,10 @@ public:
     inline static bool previousKeys[MAX];
 
 public:
-    static bool isPressed(int keyCode)
-    {
-        if (isBetween(keyCode, MAX, 0))
-        {
-            return pressedKeys[keyCode];
-        }
-        return false;
-    }
-
-    inline static bool isJustPressed(int keyCode)
-    {
-        if (isBetween(keyCode, MAX, 0))
-        {
-            return !previousKeys[keyCode] && pressedKeys[keyCode];
-        }
-        return false;
-    }
-
-    inline static bool isReleased(int keyCode)
-    {
-        if (isBetween(keyCode, MAX, 0))
-        {
-            return previousKeys[keyCode] && !pressedKeys[keyCode];
-        }
-        return false;
-    }
+    static bool isPressed(int keyCode);
+    static bool isPressed(const char *name);
+    inline static bool isJustPressed(int keyCode);
+    inline static bool isReleased(int keyCode);
 
 private:
     InputManager() {}
