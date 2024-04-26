@@ -86,6 +86,10 @@ String &String::operator+(char other)
     return *this;
 }
 
+bool String::operator<(const String& other) const {
+        return std::strcmp(data, other.data) < 0;
+    }
+
 size_t String::size() const
 {
     return length;

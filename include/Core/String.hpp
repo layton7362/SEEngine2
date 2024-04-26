@@ -32,6 +32,7 @@ public:
 
     String &operator+(const String &other);
     String &operator+(char other);
+    bool operator<(const String& other) const;
 
     size_t size() const;
     String &append(const String &other);
@@ -40,7 +41,7 @@ public:
     char char_at(size_t pos) const;
 
     static String convertToString(const float &value);
-        static String convertToString(const int &value);
+    static String convertToString(const int &value);
 
     friend std::ostream &operator<<(std::ostream &os, const String &str);
 };

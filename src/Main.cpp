@@ -16,13 +16,13 @@ SceneTree tree;
 
 int main()
 {
-    uvec2 windowSize = config.windowSize();
-    Window window(windowSize.x, windowSize.y, config.gameTitle());
+    uvec2 windowSize = config->windowSize();
+    Window window(windowSize.x, windowSize.y, config->gameTitle());
     window.init_window();
 
     tree.init();
 
-    const double FRAME_RATE = config.fps();
+    const double FRAME_RATE = config->fps();
     const double FRAME_TIME = 1.0f / FRAME_RATE;
 
     double time_start = System::getTime();

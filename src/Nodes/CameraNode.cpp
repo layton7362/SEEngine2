@@ -14,13 +14,13 @@ CameraNode::~CameraNode()
 void CameraNode::update(const float& delta)
 {
     const float speed = delta * 5;
-    if (InputManager::isPressed(KeyCode::ARROW_RIGHT))
+    if (Input->isPressed("RIGHT"))
         translate(vec3(-speed, 0, 0));
-    if (InputManager::isPressed(KeyCode::ARROW_LEFT))
+    if (Input->isPressed(KeyCode::ARROW_LEFT))
         translate(vec3(speed, 0, 0));
-    if (InputManager::isPressed(KeyCode::ARROW_DOWN))
+    if (Input->isPressed(KeyCode::ARROW_DOWN))
         translate(vec3(0, 0, -speed));
-    if (InputManager::isPressed(KeyCode::ARROW_UP))
+    if (Input->isPressed(KeyCode::ARROW_UP))
         translate(vec3(0, 0, speed));
 
     cam->view = transformation;

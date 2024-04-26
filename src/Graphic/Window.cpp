@@ -6,8 +6,8 @@
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
-    InputManager::previousKeys[key] = InputManager::pressedKeys[key];
-    InputManager::pressedKeys[key] = action == GLFW_REPEAT || action == GLFW_PRESS;
+    Input->previousKeys[key] = Input->pressedKeys[key];
+    Input->pressedKeys[key] = action == GLFW_REPEAT || action == GLFW_PRESS;
 }
 
 void framebufferSizeCallback(GLFWwindow *window, int width, int height)

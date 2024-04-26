@@ -1,5 +1,19 @@
+#include <algorithm>
 #include <Utils.hpp>
 #include <Manager/InputManager.hpp>
+
+InputManager *Input = new InputManager();
+
+InputManager::InputManager()
+{
+    Log::info("Create InputManager");
+    inputNames = config->inputMap();
+    Log::info("Create InputManager Done");
+}
+
+InputManager::~InputManager()
+{
+}
 
 bool InputManager::isPressed(int keyCode)
 {
@@ -10,8 +24,20 @@ bool InputManager::isPressed(int keyCode)
     return false;
 }
 
-bool InputManager::isPressed(const char *name)
+bool InputManager::isPressed(String name)
 {
+    // auto result = inputNames.insert(std::make_pair("name", 0));
+    if (inputNames.find(name) == inputNames.end())
+    {
+        return false;
+    }
+    for (auto &keyCode : inputNames[name])
+    {
+        if (isPressed(keyCode))
+        {
+            return true;
+        }
+    }
     return false;
 }
 

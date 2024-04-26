@@ -42,13 +42,13 @@ void GameScenePlayground::init()
 
 void GameScenePlayground::update(const float &delta)
 {
-    if (InputManager::isPressed(KeyCode::R))
+    if (Input->isPressed(KeyCode::R))
         obj->rotate(0.5 * delta, AXIS_Y);   
-    if (InputManager::isPressed(KeyCode::E))
+    if (Input->isPressed(KeyCode::E))
         obj->rotate(-0.5 * delta, AXIS_Y);
-    if (InputManager::isPressed(KeyCode::S))
+    if (Input->isPressed(KeyCode::S))
         obj->scale(vec3(1)+vec3(1)* delta);
-    if (InputManager::isPressed(KeyCode::A))
+    if (Input->isPressed(KeyCode::A))
         obj->scale(vec3(1)-vec3(1)* delta);
 }
 

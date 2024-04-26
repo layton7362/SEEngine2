@@ -1,11 +1,16 @@
+#include <exception>
+#include <string.h>
 #include <Core/File.hpp>
 #include <Core/Log.hpp>
-#include <exception>
 #include <Misc/Config.hpp>
 
+Config *config = new Config();
+// Config config2;
 Config::Config()
 {
-    read();
+    Log::info("Create Config.");
+    this->read();
+    Log::info("Create Config done.");
 }
 
 Config::~Config()
@@ -25,6 +30,10 @@ void Config::read()
 
 JsonValue Config::operator[](const char *key)
 {
+    if (data.empty())
+    {
+        throw std::invalid_argument("Config Json is empty.");
+    }
     JsonValue *result = data.if_contains(key);
     if (!result)
     {
@@ -57,4 +66,30 @@ uvec2 Config::windowSize()
         size.y = data["window"].as_object()["height"].as_int64();
     }
     return size;
+}
+
+InputNameMap Config::inputMap()
+{
+    static InputNameMap inputs;
+
+    if (inputs.empty())
+    {
+        bool istype = (*config)["inputMap"].is_object();
+        JsonObject obj = (*config)["inputMap"].as_object();
+        auto size_outer = obj.size();
+        for (JsonObject::value_type e_im : obj)
+        {
+            String key = e_im.key().data();
+            JsonArray keyCodes = e_im.value().as_array();
+
+            vector<unsigned int> valueVec(keyCodes.size());
+            for (unsigned int i = 0; i < keyCodes.size(); i++)
+            {
+                auto val = keyCodes[i].as_int64();
+                valueVec[i] = keyCodes.at(i).as_int64();
+            }
+            inputs.insert(std::make_pair(key, valueVec));
+        }
+    }
+    return inputs;
 }

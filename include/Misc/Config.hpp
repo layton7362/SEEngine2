@@ -1,7 +1,19 @@
 #pragma once
-
+#include <map>
+#include <vector>
 #include "JsonUtil.hpp"
 #include <Types.hpp>
+
+using std::map;
+using std::vector;
+
+struct StringComparator {
+    bool operator()(const String& str1, const String& str2) const {
+        return str1 < str2; 
+    }
+};
+
+using InputNameMap = map<String, vector<unsigned int>, StringComparator>;
 
 class Config
 {
@@ -11,11 +23,13 @@ public:
     Config();
     virtual ~Config() noexcept;
 
-    void read();
     JsonValue operator[](const char *key);
+
+    void read();
     double fps();
-    const char* gameTitle();
+    const char *gameTitle();
     uvec2 windowSize();
+    InputNameMap inputMap();
 };
 
-static Config config;
+extern Config *config;

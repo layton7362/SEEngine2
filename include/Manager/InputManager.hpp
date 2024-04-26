@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Misc/Config.hpp>
+#include <Types.hpp>
 
 struct KeyCode
 {
@@ -90,20 +92,24 @@ struct KeyCode
     };
 };
 
+
 #define MAX 400
-class InputManager
+class InputManager final 
 {
 public:
-    inline static bool pressedKeys[MAX];
-    inline static bool previousKeys[MAX];
+    bool pressedKeys[MAX] {false};
+    bool previousKeys[MAX]{false};
+
+    InputNameMap inputNames;
 
 public:
-    static bool isPressed(int keyCode);
-    static bool isPressed(const char *name);
-    inline static bool isJustPressed(int keyCode);
-    inline static bool isReleased(int keyCode);
+    bool isPressed(int keyCode);
+    bool isPressed(String name);
+    bool isJustPressed(int keyCode);
+    bool isReleased(int keyCode);
 
-private:
-    InputManager() {}
-    virtual ~InputManager() noexcept {}
+    InputManager();
+    ~InputManager() noexcept;
 };
+
+extern InputManager* Input;
