@@ -7,6 +7,13 @@ struct KeyCode
 {
     enum Type
     {
+        SPACE = 32,
+
+        ASTERISK = 42,
+        PLUS = 43,
+        MINUS = 45,
+        SLASH = 47,
+
         NUMBER_0 = 48,
         NUMBER_1 = 49,
         NUMBER_2 = 50,
@@ -45,7 +52,16 @@ struct KeyCode
         Y = 89,
         Z = 90,
 
-        NUMBER_BLOCK_0 = 256,
+        ENTER = 257,
+        BACKSPACE  = 259,
+        
+        DEL = 261,
+        ARROW_RIGHT = 262,
+        ARROW_LEFT = 263,
+        ARROW_DOWN = 264,
+        ARROW_UP = 265,
+
+        NUMBER_BLOCK_0 = 320,
         NUMBER_BLOCK_1,
         NUMBER_BLOCK_2,
         NUMBER_BLOCK_3,
@@ -55,9 +71,13 @@ struct KeyCode
         NUMBER_BLOCK_7,
         NUMBER_BLOCK_8,
         NUMBER_BLOCK_9,
+        NUMBER_BLOCK_COMMA = 330,
+        NUMBER_BLOCK_DIVICE = 330,
+        NUMBER_BLOCK_MULTI = 330,
+        NUMBER_BLOCK_MINUX = 333,
+        NUMBER_BLOCK_PLUS,
+        NUMBER_BLOCK_ENTER,
 
-        SPACE = 32,
-        ENTER = 13,
 
         F1 = 290,
         F2 = 291,
@@ -72,17 +92,6 @@ struct KeyCode
         F11 = 300,
         F12 = 301,
 
-        ARROW_RIGHT = 262,
-        ARROW_LEFT = 263,
-        ARROW_DOWN = 264,
-        ARROW_UP = 265,
-
-        PLUS = 43,
-        MINUS = 45,
-        ASTERISK = 42,
-        SLASH = 47,
-
-        Count = 59,
     };
     enum Mod
     {
