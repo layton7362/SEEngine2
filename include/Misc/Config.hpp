@@ -30,6 +30,8 @@ public:
     const char *gameTitle();
     uvec2 windowSize();
     InputNameMap inputMap();
+    vec3 temp();
+
 };
 
 extern Config *config;

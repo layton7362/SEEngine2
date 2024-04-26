@@ -93,3 +93,12 @@ InputNameMap Config::inputMap()
     }
     return inputs;
 }
+
+vec3 Config::temp()
+{
+    JsonObject obj = data["temp"].as_object();
+    double x = obj["x"].as_double();
+    double y = obj["y"].as_double();
+    double z = obj["z"].as_double();
+    return vec3(x,y,z);
+}

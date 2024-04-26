@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <Core/Object.hpp>
+#include <Types.hpp>
 
 class Node : public Object
 {
@@ -9,7 +10,8 @@ private:
 
 public:
     Node *parent = nullptr;
-
+    String name;
+    
     Node();
     virtual ~Node() noexcept;
 

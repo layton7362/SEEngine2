@@ -112,7 +112,6 @@ void SceneTree::physikUpdate()
 void SceneTree::renderUpdate()
 {
     this->renderEngine->renderBegin(clearColor);
-    mat->useMaterial();
     this->renderEngine->render();
 }
 

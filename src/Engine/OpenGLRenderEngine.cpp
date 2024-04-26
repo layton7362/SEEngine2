@@ -64,11 +64,6 @@ void OpenGLRenderEngine::buildMesh(Object3D *obj)
     glEnableVertexAttribArray(2);
     glEnableVertexAttribArray(3);
 
-    // glBindBuffer(GL_ARRAY_BUFFER, 0);
-    // glDisable(GL_DEPTH_TEST);
-    // glEnable(GL_DEPTH_TEST);
-    // glColorMask(false,true,true,true);
-
     this->render_id[obj] = new RenderData{VAO, VBO, EBO};
 }
 
@@ -91,16 +86,10 @@ void OpenGLRenderEngine::addCameraUniform(Camera *cam, Object3D *obj)
 
 void OpenGLRenderEngine::render()
 {
-    // glEnable(GL_STENCIL_TEST);
-    // glStencilFunc(GL_ALWAYS, 1, 1);
-    // glStencilOp(GL_KEEP, GL_LINE, GL_REPLACE);
-
-    // glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
-    // glDepthMask(GL_FALSE); 
-
     for (auto &&id : this->render_id)
     {
         Object3D *const obj = id.first;
+        obj->material->useMaterial();
         obj->loadUniforms();
         RenderData *data = id.second;
         glBindVertexArray(data->VAO);

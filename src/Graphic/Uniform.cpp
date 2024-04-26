@@ -14,7 +14,10 @@ void TraitUniform::loadUniforms()
 {
     for (const auto &pair : uniforms)
     {
-        UniformCallable call = pair.second;
-        call();
+        if (pair.first >= 0)
+        {
+            UniformCallable call = pair.second;
+            call();
+        }
     }
 }
