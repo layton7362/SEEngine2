@@ -6,19 +6,8 @@
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
-    // TODO FIX RELEASE
     InputManager::previousKeys[key] = InputManager::pressedKeys[key];
     InputManager::pressedKeys[key] = action == GLFW_REPEAT || action == GLFW_PRESS;
-
-
-    // if ( KeyCode::A == key && action == GLFW_REPEAT)
-    // {
-    //     std::cout << "Taste gedrückt: " << key << std::endl;
-    // }
-    // else if (action == GLFW_RELEASE)
-    // {
-    //     std::cout << "Taste losgelassen: " << key << std::endl;
-    // }
 }
 
 
