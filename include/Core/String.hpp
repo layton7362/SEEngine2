@@ -35,13 +35,19 @@ public:
 
     String &operator+(const String &other);
     String &operator+(char other);
-    bool operator<(const String& other) const;
+    bool operator<(const String &other) const;
 
     size_t size() const;
     String &append(const String &other);
     String &append(char c);
 
-    vector<String> split(const char* delimeter);
+    bool contain(String &str) const;
+    bool contain(String &&str) const;
+
+    template <typename T1, typename T2>
+    String replace(T1 search, T2 replace) const;
+
+    vector<String> split(const char *delimeter) const;
 
     const char *c_str();
     char char_at(size_t pos) const;
@@ -51,3 +57,22 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const String &str);
 };
+
+template <typename T1, typename T2>
+String String::replace(T1 search, T2 replace) const
+{
+    String result(*this);
+    size_t searchLen = std::strlen(search);
+    size_t replaceLen = std::strlen(replace);
+
+    char *pos = std::strstr(result.data, search);
+    while (pos != nullptr)
+    {
+        std::memmove(pos + replaceLen, pos + searchLen, result.length - (pos - result.data) - searchLen + 1);
+        std::memcpy(pos, replace, replaceLen);
+        pos = std::strstr(pos + replaceLen, search);
+        result.length += (replaceLen - searchLen);
+    }
+
+    return result;
+}

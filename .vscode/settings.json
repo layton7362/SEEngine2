@@ -124,6 +124,8 @@
     "*.ipp": "cpp",
     "chrono": "cpp",
     "format": "cpp",
-    "span": "cpp"
+    "span": "cpp",
+    "complex": "cpp",
+    "typeindex": "cpp"
   }
 }

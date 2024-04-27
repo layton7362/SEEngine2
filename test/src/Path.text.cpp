@@ -1,10 +1,12 @@
 #include <Core/Log.hpp>
-#include <Core/Log.hpp>
 #include <Test.hpp>
-
+#include <FileSystem/Path.hpp>
 
 bool test_ToString()
 {
+    Path path =  Path::currentPath();
+    String pathStr = path.toString();
+
     Log::info("ToString Done");
     return true;
 }

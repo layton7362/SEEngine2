@@ -1,7 +1,6 @@
 #include <Core/String.hpp>
 #include <string>
 
-
 String::String() : data(nullptr), length(0)
 {
 }
@@ -125,7 +124,7 @@ String &String::append(char c)
     return *this;
 }
 
-vector<String> String::split(const char *delimiter)
+vector<String> String::split(const char *delimiter) const
 {
     vector<String> result;
     size_t pos = 0;
@@ -135,7 +134,7 @@ vector<String> String::split(const char *delimiter)
         result.push_back(str.substr(0, pos).c_str());
         str.erase(0, pos + std::strlen(delimiter));
     }
-    result.push_back(data); 
+    result.push_back(str.substr(0, pos).c_str());
     return result;
 }
 
@@ -158,6 +157,16 @@ char String::char_at(size_t pos) const
         return '\0';
     }
     return data[pos];
+}
+
+bool String::contain(String &str) const
+{
+    return std::strstr(data, str.data) != nullptr;
+}
+
+bool String::contain(String &&str) const
+{
+    return std::strstr(data, str.data) != nullptr;
 }
 
 std::ostream &operator<<(std::ostream &os, const String &str)

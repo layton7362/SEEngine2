@@ -31,7 +31,6 @@ JsonValue Config::operator[](const char *key)
 {
     if (data.empty())
     {
-        
         throw std::invalid_argument("Config Json is empty.");
     }
     JsonValue *result = data.if_contains(key);

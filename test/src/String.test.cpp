@@ -2,6 +2,11 @@
 #include <Core/Log.hpp>
 #include <Test.hpp>
 
+bool test_split()
+{
+    return true;
+}
+
 bool test_compare()
 {
     String a = "Hallo";
@@ -17,7 +22,29 @@ bool test_compare()
     return true;
 }
 
-bool test_assignment(){
+bool test_replace()
+{
+    String str = "Hallo=";
+    RET_IF_CMP_FAIL(str.contain(" "), false)
+    str = str.replace("=", " ");    
+    RET_IF_CMP_FAIL(str.contain(" "), true)
+    RET_IF_CMP_FAIL(str.contain("A"), false)
+    str = str.replace(" ", "A");    
+    RET_IF_CMP_FAIL(str.contain("A"), true)
+    
+    Log::info("test_replace is ok");
+    return true;
+}
+
+bool test_contain()
+{
+
+    Log::info("test_contain is ok");
+    return true;
+}
+
+bool test_assignment()
+{
 
     String a = "Hallo Welt";
     RET_IF_CMP_FAIL(a, "Hallo Welt")
@@ -42,7 +69,7 @@ bool test_assignment(){
     RET_IF_CMP_FAIL(d, "Hallo Welt")
 
     String concat = "I try";
-    concat += String(" to concat") + " the text"; 
+    concat += String(" to concat") + " the text";
     RET_IF_CMP_FAIL(concat, "I try to concat the text")
     RET_IF_NOT_CMP_FAIL(concat, "i try to concat the text")
 
@@ -50,14 +77,17 @@ bool test_assignment(){
     return true;
 }
 
-int main_String(const char* type)
+int main_String(const char *type)
 {
-    
+
     Log::info("====================");
     Log::info(type);
     Log::info("====================");
     assert(test_compare());
     assert(test_assignment());
+    assert(test_split());
+    assert(test_replace());
+    assert(test_contain());
 
     Log::info(type);
     Log::info("Test ends successful");
