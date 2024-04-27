@@ -3,8 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
-#include <Core/String.hpp>
 #include <list>
+#include <Core/String.hpp>
 
 class Log
 {

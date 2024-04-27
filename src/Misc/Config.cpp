@@ -2,9 +2,7 @@
 #include <string.h>
 #include <FileSystem/File.hpp>
 #include <Core/Log.hpp>
-#include <Misc/Config.hpp>
-
-Config *config = new Config();
+#include <Global.hpp>
 
 Config::Config()
 {
@@ -23,6 +21,7 @@ void Config::read()
     if (!fileData.success)
     {
         Log::error("Could not load Config!");
+        return;
     }
     JsonValue value = JsonUtil::toJson(fileData.data);
     data = value.as_object();
@@ -32,6 +31,7 @@ JsonValue Config::operator[](const char *key)
 {
     if (data.empty())
     {
+        
         throw std::invalid_argument("Config Json is empty.");
     }
     JsonValue *result = data.if_contains(key);

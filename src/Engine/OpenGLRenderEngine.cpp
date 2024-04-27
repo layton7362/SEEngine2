@@ -1,7 +1,7 @@
 
 #include <array>
-#include <Graphic/Camera.hpp>
 #include <algorithm>
+#include <Graphic/Camera.hpp>
 #include <Engine/OpenGLRenderEngine.hpp>
 #include <Utils.hpp>
 

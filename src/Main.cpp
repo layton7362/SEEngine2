@@ -2,7 +2,7 @@
 #include <Graphic/Window.hpp>
 #include <Nodes/SceneTree.hpp>
 
-#include <Misc/Config.hpp>
+#include <Global.hpp>
 
 #include <Graphic/Material.hpp>
 #include <Core/Ressource.hpp>

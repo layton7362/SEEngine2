@@ -29,4 +29,3 @@ public:
 
 };
 
-extern Config *config;

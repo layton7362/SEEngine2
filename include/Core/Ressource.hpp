@@ -1,16 +1,16 @@
 #pragma once
 
 #include <stdexcept>
+#include <type_traits>
 #include <Core/RessourceType.hpp>
 #include <Core/Ressource.hpp>
-#include <type_traits>
-#include<Core/Log.hpp>
-#include <type_traits>
+#include <Core/Log.hpp>
 
 template <class R>
 class Ressource
 {
     friend class RessourceManager;
+
 private:
     R *resType = nullptr;
 
@@ -35,7 +35,7 @@ Ressource<R>::Ressource()
 }
 
 template <class R>
-Ressource<R>::Ressource(Ressource<R>& ressource)
+Ressource<R>::Ressource(Ressource<R> &ressource)
 {
     if (&ressource != nullptr)
     {
@@ -47,7 +47,7 @@ Ressource<R>::Ressource(Ressource<R>& ressource)
 template <class R>
 Ressource<R>::~Ressource() noexcept
 {
-   this->resType->decreaseCounter();
+    this->resType->decreaseCounter();
     if (this->resType->getCounter() <= 0)
     {
         delete this->resType;

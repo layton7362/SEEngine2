@@ -14,7 +14,7 @@ String Path::toString()
     String res;
     for (String &substr : path)
     {
-        res += substr;
+        res += substr + "/";
     }
     return res;
 }
