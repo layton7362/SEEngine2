@@ -93,8 +93,7 @@ void OpenGLRenderEngine::addCameraUniform(Camera *cam, Object3D *obj)
     const GLint &progId = obj->material->getProgramId();
     const GLint locView = glGetUniformLocation(progId, "view");
     const GLint locProj = glGetUniformLocation(progId, "projection");
-
-    obj->addUniform(locView, UniformCall(TraitUniform::setMatrix4(locView, cam->view)));
+    obj->addUniform(locView, UniformCall(TraitUniform::setMatrix4(locView, glm::inverse(cam->view))));
     obj->addUniform(locProj, UniformCall(TraitUniform::setMatrix4(locProj, cam->projection)));
 }
 

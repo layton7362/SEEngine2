@@ -101,7 +101,6 @@ struct KeyCode
     };
 };
 
-
 #define MAX 400
 class InputManager final 
 {
