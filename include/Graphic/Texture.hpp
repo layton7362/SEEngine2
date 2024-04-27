@@ -10,4 +10,7 @@ public:
 public:
     Texture();
     virtual ~Texture() noexcept;
+
+
+    void load(String path);
 };
