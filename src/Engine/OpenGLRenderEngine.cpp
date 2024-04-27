@@ -1,7 +1,9 @@
 
 #include <array>
 #include <Graphic/Camera.hpp>
+#include <algorithm>
 #include <Engine/OpenGLRenderEngine.hpp>
+#include <Utils.hpp>
 
 OpenGLRenderEngine::OpenGLRenderEngine()
 {
@@ -33,6 +35,7 @@ void OpenGLRenderEngine::addMaterial(Object3D *obj)
         materialIds[obj->material] = new MaterialData{0, vector<Object3D *>()};
     }
     materialIds[obj->material]->object.push_back(obj);
+    std::sort(materialIds[obj->material]->object.begin(), materialIds[obj->material]->object.end());
 }
 
 void OpenGLRenderEngine::buildMesh(Object3D *obj)
@@ -102,9 +105,9 @@ void OpenGLRenderEngine::render()
         Material *mat = id.first;
         MaterialData *data = id.second;
         mat->useMaterial();
+        mat->loadUniforms();
         for (Object3D *obj : data->object)
         {
-            mat->loadUniforms();
             obj->loadUniforms();
             RenderData *mdata = meshIds[obj->mesh];
             glBindVertexArray(mdata->VAO);
@@ -141,6 +144,5 @@ void OpenGLRenderEngine::dispose_meshes()
 
 void OpenGLRenderEngine::dispose()
 {
-
     // TODO
 }
