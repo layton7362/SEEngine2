@@ -26,11 +26,12 @@ bool test_replace()
 {
     String str = "Hallo=";
     RET_IF_CMP_FAIL(str.contain(" "), false)
-    str = str.replace("=", " ");    
+    str = str.replace("=", " ");
     RET_IF_CMP_FAIL(str.contain(" "), true)
     RET_IF_CMP_FAIL(str.contain("A"), false)
     str = str.replace(" ", "A");    
     RET_IF_CMP_FAIL(str.contain("A"), true)
+
     
     Log::info("test_replace is ok");
     return true;
@@ -38,6 +39,10 @@ bool test_replace()
 
 bool test_contain()
 {
+    String str = "MyString is here!";
+    RET_IF_CMP_FAIL(str.contain(" "), true)
+    RET_IF_CMP_FAIL(str.contain("?"), false)
+    RET_IF_CMP_FAIL(str.contain("!"), true)
 
     Log::info("test_contain is ok");
     return true;
@@ -45,7 +50,6 @@ bool test_contain()
 
 bool test_assignment()
 {
-
     String a = "Hallo Welt";
     RET_IF_CMP_FAIL(a, "Hallo Welt")
 
@@ -86,8 +90,8 @@ int main_String(const char *type)
     assert(test_compare());
     assert(test_assignment());
     assert(test_split());
-    assert(test_replace());
     assert(test_contain());
+    assert(test_replace());
 
     Log::info(type);
     Log::info("Test ends successful");
