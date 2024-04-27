@@ -4,6 +4,23 @@
 
 bool test_split()
 {
+    String str = "www.url.is.ok";
+    vector<String> vec =  str.split(".");
+    RET_IF_CMP_FAIL(vec.size(), 4)
+
+    str = "www.url.is.ok.";
+    vec =  str.split(".");
+    RET_IF_CMP_FAIL(vec.size(), 5)
+
+    str = "www::url::is::ok";
+    vec =  str.split("::");
+    RET_IF_CMP_FAIL(vec.size(), 4)
+
+    str = "www::url::is::ok";
+    vec =  str.split(":");
+    RET_IF_CMP_FAIL(vec.size(), 7)
+
+    Log::info("test_split is ok");
     return true;
 }
 
@@ -29,10 +46,9 @@ bool test_replace()
     str = str.replace("=", " ");
     RET_IF_CMP_FAIL(str.contain(" "), true)
     RET_IF_CMP_FAIL(str.contain("A"), false)
-    str = str.replace(" ", "A");    
+    str = str.replace(" ", "A");
     RET_IF_CMP_FAIL(str.contain("A"), true)
 
-    
     Log::info("test_replace is ok");
     return true;
 }
@@ -89,9 +105,9 @@ int main_String(const char *type)
     Log::info("====================");
     assert(test_compare());
     assert(test_assignment());
-    assert(test_split());
     assert(test_contain());
     assert(test_replace());
+    assert(test_split());
 
     Log::info(type);
     Log::info("Test ends successful");
