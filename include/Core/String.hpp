@@ -3,6 +3,9 @@
 #include <cstring>
 #include <iostream>
 #include <cstddef>
+#include <vector>
+
+using std::vector;
 
 class String
 {
@@ -37,6 +40,9 @@ public:
     size_t size() const;
     String &append(const String &other);
     String &append(char c);
+
+    vector<String> split(const char* delimeter);
+
     const char *c_str();
     char char_at(size_t pos) const;
 

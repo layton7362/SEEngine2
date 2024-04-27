@@ -1,4 +1,6 @@
 #include <Core/String.hpp>
+#include <string>
+
 
 String::String() : data(nullptr), length(0)
 {
@@ -29,7 +31,6 @@ String::~String()
     delete[] data;
 }
 
-
 String::operator const char *() const
 {
     return data;
@@ -49,7 +50,6 @@ bool String::operator!=(const String &other) const
 {
     return strcmp(this->data, other.data) != 0;
 }
-
 
 bool String::operator!=(const char *other) const
 {
@@ -86,9 +86,10 @@ String &String::operator+(char other)
     return *this;
 }
 
-bool String::operator<(const String& other) const {
-        return std::strcmp(data, other.data) < 0;
-    }
+bool String::operator<(const String &other) const
+{
+    return std::strcmp(data, other.data) < 0;
+}
 
 size_t String::size() const
 {
@@ -124,6 +125,19 @@ String &String::append(char c)
     return *this;
 }
 
+vector<String> String::split(const char *delimiter)
+{
+    vector<String> result;
+    size_t pos = 0;
+    std::string str = this->data;
+    while ((pos = str.find(delimiter)) != std::string::npos)
+    {
+        result.push_back(str.substr(0, pos).c_str());
+        str.erase(0, pos + std::strlen(delimiter));
+    }
+    result.push_back(data); 
+    return result;
+}
 
 String String::convertToString(const float &value)
 {
