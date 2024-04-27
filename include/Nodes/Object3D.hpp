@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Manager/InputManager.hpp>
 #include <Graphic/Uniform.hpp>
 #include <Graphic/Mesh.hpp>
 #include <Graphic/Material.hpp>

@@ -5,10 +5,11 @@ class String;
 
 class Path
 {
+    vector<String> path;
 public:
     Path();
-    virtual ~Path() noexcept;
-    String toString(Path&);
+    ~Path() noexcept;
+    String toString();
     static String getExtension(Path& path);
     static String getExtension(String& path);
 };
