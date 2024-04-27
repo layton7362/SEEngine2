@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <Types.hpp>
+#include <Nodes/Object3D.hpp>
 
 #define isSubclass(base, class) dynamic_cast<base *>(class) != nullptr
 #define checkIsSubclass(base, class) static_assert(std::is_base_of<base, class>::value, "Ressource: R must be a subclass of RessourceType");
@@ -48,3 +49,10 @@ static void printMatrix(mat4 &m)
     printf("%f\t%f\t%f\t%f\n", m[0][3], m[1][3], m[2][3], m[3][3]);
     printf("=====================================================\n");
 }
+
+
+struct StringComparator {
+    bool operator()(const String& str1, const String& str2) const {
+        return str1 < str2; 
+    }
+};
