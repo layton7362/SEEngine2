@@ -6,7 +6,8 @@ layout(location = 2) in vec4 color;
 layout(location = 3) in vec2 uv1;
 
 uniform mat4 transformation;
+uniform mat4 ortho;
 
 void main() {
-    gl_Position = transformation * vec4(position, 1.0);
+    gl_Position = ortho *transformation* vec4(position, 1.0);
 }

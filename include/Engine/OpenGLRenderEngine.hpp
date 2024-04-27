@@ -7,7 +7,9 @@ class Camera;
 class OpenGLRenderEngine : public RenderEngine
 {
 private:
-    std::map<Object3D *, RenderData *> render_id;
+    // std::map<Object3D *, RenderData *> render_id;
+    std::map<class Mesh *, RenderData *> meshIds;
+    std::map<class Material*, MaterialData *> materialIds;
 
 public:
     OpenGLRenderEngine();
@@ -15,6 +17,7 @@ public:
 
     void addObject(Object3D *mesh) override;
     void removeObject(Object3D *mesh) override;
+    void addMaterial(Object3D* obj);
     void buildMesh(Object3D *mesh) override;
     void dispose_meshes() override;
     void renderBegin(const Color4& clear) override;

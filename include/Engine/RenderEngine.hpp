@@ -1,12 +1,14 @@
 #pragma once
 
 #include <map>
+#include <vector>
 #include <glad/glad.h>
 #include <Interface.hpp>
 #include <Nodes/Object3D.hpp>
 #include <Graphic/Mesh.hpp>
 #include <Types.hpp>
 
+using std::vector;
 
 class Object3D;
 class Camera;
@@ -33,4 +35,10 @@ struct RenderData
     GLuint VAO;
     GLuint VBO;
     GLuint EBO;
+};
+
+struct MaterialData
+{
+    GLuint id;
+    vector<Object3D*> object;
 };

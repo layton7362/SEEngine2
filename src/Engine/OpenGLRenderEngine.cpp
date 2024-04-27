@@ -13,14 +13,26 @@ OpenGLRenderEngine::~OpenGLRenderEngine()
 
 void OpenGLRenderEngine::addObject(Object3D *obj)
 {
-    if (this->render_id.count(obj) == 0)
+    if (this->meshIds.count(obj->mesh) == 0)
     {
         this->buildMesh(obj);
+
+        // this->materialIds[obj->material] = MaterialData(-1, obj);
+        addMaterial(obj);
     }
 }
 
 void OpenGLRenderEngine::removeObject(Object3D *obj)
 {
+}
+
+void OpenGLRenderEngine::addMaterial(Object3D *obj)
+{
+    if (materialIds.find(obj->material) == materialIds.end())
+    {
+        materialIds[obj->material] = new MaterialData{0, vector<Object3D *>()};
+    }
+    materialIds[obj->material]->object.push_back(obj);
 }
 
 void OpenGLRenderEngine::buildMesh(Object3D *obj)
@@ -64,14 +76,13 @@ void OpenGLRenderEngine::buildMesh(Object3D *obj)
     glEnableVertexAttribArray(2);
     glEnableVertexAttribArray(3);
 
-    this->render_id[obj] = new RenderData{VAO, VBO, EBO};
+    this->meshIds[obj->mesh] = new RenderData{VAO, VBO, EBO};
 }
 
-void OpenGLRenderEngine::renderBegin(const Color4& clear)
-{   
+void OpenGLRenderEngine::renderBegin(const Color4 &clear)
+{
     glClearColor(clear.r, clear.g, clear.b, clear.a);
     glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-    
 }
 
 void OpenGLRenderEngine::addCameraUniform(Camera *cam, Object3D *obj)
@@ -86,20 +97,25 @@ void OpenGLRenderEngine::addCameraUniform(Camera *cam, Object3D *obj)
 
 void OpenGLRenderEngine::render()
 {
-    for (auto &&id : this->render_id)
+    for (auto &&id : this->materialIds)
     {
-        Object3D *const obj = id.first;
-        obj->material->useMaterial();
-        obj->loadUniforms();
-        RenderData *data = id.second;
-        glBindVertexArray(data->VAO);
-        if (obj->hasIndices())
+        Material *mat = id.first;
+        MaterialData *data = id.second;
+        mat->useMaterial();
+        for (Object3D *obj : data->object)
         {
-            glDrawElements(GL_TRIANGLES, obj->getTrianglesCount(), GL_UNSIGNED_INT, 0);
-        }
-        else
-        {
-            glDrawArrays(GL_TRIANGLES, 0, obj->getTrianglesCount());
+            mat->loadUniforms();
+            obj->loadUniforms();
+            RenderData *mdata = meshIds[obj->mesh];
+            glBindVertexArray(mdata->VAO);
+            if (obj->hasIndices())
+            {
+                glDrawElements(GL_TRIANGLES, obj->getTrianglesCount(), GL_UNSIGNED_INT, 0);
+            }
+            else
+            {
+                glDrawArrays(GL_TRIANGLES, 0, obj->getTrianglesCount());
+            }
         }
     }
 }
@@ -110,17 +126,17 @@ void OpenGLRenderEngine::renderEnd()
 
 void OpenGLRenderEngine::dispose_meshes()
 {
-    for (auto &&id : this->render_id)
-    {
-        Mesh *mesh = id.first->mesh;
-        RenderData *data = id.second;
-        glDeleteVertexArrays(1, &data->VAO);
-        glDeleteBuffers(1, &data->VBO);
-        glDeleteBuffers(1, &data->EBO);
-        delete mesh;
-        mesh = nullptr;
-        // glDeleteProgram(material->getProgramId());
-    }
+    // for (auto &&id : this->render_id)
+    // {
+    //     Mesh *mesh = id.first->mesh;
+    //     RenderData *data = id.second;
+    //     glDeleteVertexArrays(1, &data->VAO);
+    //     glDeleteBuffers(1, &data->VBO);
+    //     glDeleteBuffers(1, &data->EBO);
+    //     delete mesh;
+    //     mesh = nullptr;
+    // glDeleteProgram(material->getProgramId());
+    // }
 }
 
 void OpenGLRenderEngine::dispose()
