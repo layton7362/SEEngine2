@@ -3,15 +3,10 @@
 #include <vector>
 #include "JsonUtil.hpp"
 #include <Types.hpp>
+#include <Utils.hpp>
 
 using std::map;
 using std::vector;
-
-struct StringComparator {
-    bool operator()(const String& str1, const String& str2) const {
-        return str1 < str2; 
-    }
-};
 
 using InputNameMap = map<String, vector<unsigned int>, StringComparator>;
 
