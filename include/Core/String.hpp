@@ -18,7 +18,9 @@ public:
     String(const String &other);
     String(const char *str);
     String(const int &other);
-    String(const float &other);
+    String(const int&& other);
+    String(const double &other);
+    String(const double&& other);
     ~String();
 
     operator const char *() const;
@@ -52,7 +54,7 @@ public:
     const char *c_str();
     char char_at(size_t pos) const;
 
-    static String convertToString(const float &value);
+    static String convertToString(const double &value);
     static String convertToString(const int &value);
 
     friend std::ostream &operator<<(std::ostream &os, const String &str);

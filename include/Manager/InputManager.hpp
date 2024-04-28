@@ -108,8 +108,9 @@ class InputManager final
 public:
     bool pressedKeys[MAX] {false};
     bool previousKeys[MAX]{false};
-
     InputNameMap inputNames;
+    dvec2 mousePos;
+    ivec2 mousePosGlobal;
 
 public:
     bool isPressed(int keyCode);

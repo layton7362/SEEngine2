@@ -17,11 +17,16 @@ String::String(const String &other) : data(nullptr), length(other.length)
     strcpy(data, other.data);
 }
 
-String::String(const float &other) : String(convertToString(other))
+String::String(const int &other) : String(convertToString(other))
 {
 }
-
-String::String(const int &other) : String(convertToString(other))
+String::String(const double &other) : String(convertToString(other))
+{
+}
+String::String(const int&& other) : String(convertToString(other))
+{
+}
+String::String(const double&& other) : String(convertToString(other))
 {
 }
 
@@ -138,7 +143,7 @@ vector<String> String::split(const char *delimiter) const
     return result;
 }
 
-String String::convertToString(const float &value)
+String String::convertToString(const double &value)
 {
     std::string str = std::to_string(value);
     return String(str.c_str());

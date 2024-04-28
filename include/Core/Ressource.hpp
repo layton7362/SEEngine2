@@ -6,7 +6,7 @@
 #include <Core/Ressource.hpp>
 #include <Core/Log.hpp>
 
-template <class R>
+template <typename R>
 class Ressource
 {
     friend class RessourceManager;

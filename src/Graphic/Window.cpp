@@ -15,6 +15,20 @@ void framebufferSizeCallback(GLFWwindow *window, int width, int height)
     glViewport(0, 0, width, height);
 }
 
+void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
+{
+    Log::info(String(button));
+    Log::info(String(action));
+    Log::info(String(mods));
+    Log::info("===========");
+}
+
+void mousePosCallback(GLFWwindow *window, double xpos, double ypos)
+{
+    Input->mousePos = {xpos, ypos};
+    glfwGetWindowPos(window, &Input->mousePosGlobal.x, &Input->mousePosGlobal.y);
+}
+
 Window::Window(size_t w, size_t h, const char *t)
 {
     height = h;
@@ -42,6 +56,8 @@ int Window::init_window()
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
     glfwSetKeyCallback(window, keyCallback);
+    glfwSetMouseButtonCallback(window, mouseButtonCallback);
+    glfwSetCursorPosCallback(window, mousePosCallback); 
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
