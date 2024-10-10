@@ -1,6 +1,10 @@
 #include <Graphic/Mesh.hpp>
 
-Mesh::Mesh(const MeshDataContainer &meshData): RessourceType()
+Mesh::Mesh():RessourceType()
+{
+}
+
+Mesh::Mesh(const MeshDataContainer &meshData) : RessourceType()
 {
     data[MeshData::VERTICES] = meshData[MeshData::VERTICES];
     data[MeshData::NORMALS] = meshData[MeshData::NORMALS];
@@ -10,10 +14,6 @@ Mesh::Mesh(const MeshDataContainer &meshData): RessourceType()
     data[MeshData::INDICES] = meshData[MeshData::INDICES];
 }
 
-Mesh::Mesh(): RessourceType()
-{
-}
-
 Mesh::~Mesh() noexcept
 {
     // Empty
@@ -21,7 +21,7 @@ Mesh::~Mesh() noexcept
 
 // MeshDatContainer &Mesh::getData()
 // {
-    // return this->data;
+// return this->data;
 // }
 
 const vector<vec3> &Mesh::getVertices() const
@@ -29,24 +29,27 @@ const vector<vec3> &Mesh::getVertices() const
     return std::get<vector<vec3>>(data[MeshData::VERTICES]);
 }
 
-const vector<vec3> &Mesh::getNormals() const {
+const vector<vec3> &Mesh::getNormals() const
+{
     return std::get<vector<vec3>>(data[MeshData::NORMALS]);
 }
 
-const vector<vec4> &Mesh::getColors() const {
+const vector<vec4> &Mesh::getColors() const
+{
     return std::get<vector<vec4>>(data[MeshData::COLORS]);
 }
 
-const vector<vec2> &Mesh::getUV1() const {
+const vector<vec2> &Mesh::getUV1() const
+{
     return std::get<vector<vec2>>(data[MeshData::UV1]);
 }
 
-const vector<vec2> &Mesh::getUV2() const {
+const vector<vec2> &Mesh::getUV2() const
+{
     return std::get<vector<vec2>>(data[MeshData::UV2]);
 }
 
 const vector<uvec3> &Mesh::getIndices() const
-{               
+{
     return std::get<vector<uvec3>>(data[MeshData::INDICES]);
 }
-

@@ -4,23 +4,20 @@
 #include <stdio.h>
 #include <Manager/InputManager.hpp>
 
+ViewportCallback Window::callback_updateViewport = nullptr;
+
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
     Input->previousKeys[key] = Input->pressedKeys[key];
     Input->pressedKeys[key] = action == GLFW_REPEAT || action == GLFW_PRESS;
 }
 
-void framebufferSizeCallback(GLFWwindow *window, int width, int height)
-{
-    glViewport(0, 0, width, height);
-}
-
 void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
 {
-    Log::info(String(button));
-    Log::info(String(action));
-    Log::info(String(mods));
-    Log::info("===========");
+    // Log::info(String(button));
+    // Log::info(String(action));
+    // Log::info(String(mods));
+    // Log::info("===========");
 }
 
 void mousePosCallback(GLFWwindow *window, double xpos, double ypos)
@@ -54,7 +51,7 @@ int Window::init_window()
         return -1;
     }
     glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+    glfwSetFramebufferSizeCallback(window, this->framebufferSizeCallback);
     glfwSetKeyCallback(window, keyCallback);
     glfwSetMouseButtonCallback(window, mouseButtonCallback);
     glfwSetCursorPosCallback(window, mousePosCallback); 
@@ -93,3 +90,14 @@ void Window::pollEvents()
 {
     glfwPollEvents();
 }
+
+void Window::setViewportUpdateCallback(ViewportCallback cb)
+{
+    Window::callback_updateViewport = cb;
+}
+
+void Window::framebufferSizeCallback(GLFWwindow *window, int width, int height)
+{
+    Window::callback_updateViewport(0,0, width,height);
+}
+

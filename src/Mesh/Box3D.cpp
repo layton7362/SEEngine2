@@ -1,6 +1,13 @@
 #include <Mesh/Box3D.hpp>
 
-Box3D::Box3D(float width, float height, float depth) : Mesh(generateBoxData(width, height, depth))
+Box3D::Box3D() : Mesh(generateBoxData())
+{
+}
+
+Box3D::Box3D(float width, float height, float depth) : width{width},
+                                                       height{height},
+                                                       depth{depth},
+                                                       Mesh(generateBoxData())
 {
 }
 
@@ -8,9 +15,8 @@ Box3D::~Box3D()
 {
 }
 
-MeshDataContainer Box3D::generateBoxData(float width, float height, float depth)
+MeshDataContainer Box3D::generateBoxData()
 {
-
     float verticesArray[] = {
         -0.5f, -0.5f, -0.5f,
         0.5f, -0.5f, -0.5f,

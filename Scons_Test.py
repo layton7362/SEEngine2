@@ -18,8 +18,6 @@ def filter_main_out(s: str):
 
 filteredCPP = list(filter(filter_main_out,Common.CPPFILES))
 
-Common.CPPFLAGS.append("-D__Test__=1")
-
 env.Program(
     EXE_OUT,
     filteredCPP,

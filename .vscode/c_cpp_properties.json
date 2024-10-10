@@ -4,8 +4,8 @@
       "name": "windows-gcc-x64",
       "includePath": [
         "${workspaceFolder}/**",
-        "-Iinclude",
-        "-IF:/MyProgProject/Common/include"
+        "include",
+        "F:/MyProgProject/Common/include"
       ],
       "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
       "cStandard": "${default}",

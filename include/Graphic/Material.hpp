@@ -22,6 +22,8 @@ class Material : public RessourceType, public TraitUniform
 {
 protected:
     int programId = -1;
+    
+
 
     void build(array<Shader *, ShaderListType::Count> &shaders);
 public:
@@ -30,7 +32,7 @@ public:
     virtual ~Material() noexcept;
     size_t getProgramId();
     void useMaterial();
-
+    
     void* operator new(size_t t){
         return std::malloc(t);
     };

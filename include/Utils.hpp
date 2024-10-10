@@ -1,12 +1,24 @@
 #pragma once
-
+#include <cassert>
 #include <stdio.h>
 #include <Types.hpp>
-#include <Nodes/Object3D.hpp>
+#define assertm(exp, msg) assert(((void)msg, exp))
 
 #define isSubclass(base, class) dynamic_cast<base *>(class) != nullptr
-#define checkIsSubclass(base, class) static_assert(std::is_base_of<base, class>::value, "Ressource: R must be a subclass of RessourceType");
 #define toSubclass(base, class) dynamic_cast<base *>(class)
+
+#ifndef Release
+#define isNullptr(ptr) (ptr == nullptr)
+#define isNullptrRetVoid(ptr) \
+    if (isNullptr(ptr))       \
+    {                         \
+        return;               \
+    }
+#define checkIsSubclass(base, class) static_assert(std::is_base_of<base, class>::value, "Ressource: R must be a subclass of RessourceType");
+#define checkIsConditionOk(expression, message) assertm(expression, message);
+#elif
+#define checkIsSubclass(base, class)
+#endif
 
 #define DisposeAndDelete(obj) \
     if (obj != nullptr)       \
@@ -50,9 +62,10 @@ static void printMatrix(mat4 &m)
     printf("=====================================================\n");
 }
 
-
-struct StringComparator {
-    bool operator()(const String& str1, const String& str2) const {
-        return str1 < str2; 
+struct StringComparator
+{
+    bool operator()(const String &str1, const String &str2) const
+    {
+        return str1 < str2;
     }
 };

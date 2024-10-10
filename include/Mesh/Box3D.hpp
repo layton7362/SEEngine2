@@ -2,13 +2,17 @@
 
 #include <Graphic/Mesh.hpp>
 
-// TODO FIX Its not 3D
-
-class Box3D : public Mesh {
+class Box3D : public Mesh
+{
 public:
+    float width = 1.0f;
+    float height = 1.0f;
+    float depth = 1.0f;
+
+public:
+    Box3D();
     Box3D(float width, float height, float depth);
     virtual ~Box3D() noexcept;
 
-private:
-    MeshDataContainer generateBoxData(float width, float height, float depth);
+    MeshDataContainer generateBoxData();
 };

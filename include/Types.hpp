@@ -1,21 +1,26 @@
 #pragma once 
 
+#include <glm/glm.hpp>
 #include <Core/String.hpp>
 #include <Core/StringUnique.hpp>
-#include <Core/Ressource.hpp>
-#include <glm/glm.hpp>
-
-template<typename T>
-using Res = Ressource<T>;
 
 using glm::vec2;
 using glm::vec3;
 using glm::vec4;
+
 using glm::uvec2;
 using glm::uvec3;
 using glm::uvec4;
-using glm::dvec2;
+
 using glm::ivec2;
+using glm::ivec3;
+using glm::ivec4;
+
+using glm::dvec2;
+using glm::dvec3;
+using glm::dvec4;
+
+using glm::mat2;
 using glm::mat3;
 using glm::mat4;
 

@@ -36,4 +36,5 @@ public:
 
     template <typename T>
     ResultInt<T> detectImage(void *Image);
+    
 };

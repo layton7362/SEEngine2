@@ -126,6 +126,22 @@
     "format": "cpp",
     "span": "cpp",
     "complex": "cpp",
-    "typeindex": "cpp"
+    "typeindex": "cpp",
+    "any": "cpp",
+    "strstream": "cpp",
+    "bitset": "cpp",
+    "cfenv": "cpp",
+    "condition_variable": "cpp",
+    "csignal": "cpp",
+    "set": "cpp",
+    "source_location": "cpp",
+    "mutex": "cpp",
+    "ranges": "cpp",
+    "semaphore": "cpp",
+    "shared_mutex": "cpp",
+    "stdfloat": "cpp",
+    "stop_token": "cpp",
+    "thread": "cpp",
+    "valarray": "cpp"
   }
 }

@@ -12,7 +12,6 @@ struct AudioErrorCode
         FILE_NOT_FOUND = 1,
         FILE_INVALID = 2,
         UNKNOWN = 100,
-
     };
 };
 

@@ -4,6 +4,7 @@
 #include <Utils.hpp>
 #include <Structs.hpp>
 #include <Core/Log.hpp>
+#include <Core/Ressource.hpp>
 
 class RessourceErrorCode
 {

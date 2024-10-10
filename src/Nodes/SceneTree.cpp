@@ -3,6 +3,7 @@
 #include <Utils.hpp>
 #include <GameScene/GameScenePlayground.hpp>
 #include <Engine/OpenGLRenderEngine.hpp>
+#include <Engine/VulkanRenderEngine.hpp>
 #include <Engine/AudioEngine.hpp>
 #include <Engine/PhysicEngine.hpp>
 #include <GameScene/GameScene.hpp>
@@ -22,6 +23,7 @@ SceneTree::~SceneTree()
 void SceneTree::init()
 {
     this->renderEngine = new OpenGLRenderEngine();
+    // this->renderEngine = new VulkanRenderEngine();
     this->physicWorld = new PhysicWorld();
     this->cam = new Camera();
     this->audioEngine = new AudioEngine();
@@ -113,6 +115,11 @@ void SceneTree::renderUpdate()
 {
     this->renderEngine->renderBegin(clearColor);
     this->renderEngine->render();
+}
+
+void SceneTree::viewportUpdate(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
+{
+    renderEngine->viewportUpdate(x, y, w, h);
 }
 
 void SceneTree::dispose()

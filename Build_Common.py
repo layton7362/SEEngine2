@@ -18,14 +18,17 @@ def print_dep():
 
 LIBPATH = [
     "F:/MyProgProject/Common/libs",
-    "F:/MyProgProject/Common/libs/bullet3/Release"
+    "F:/MyProgProject/Common/libs/bullet3/Release",
+    # "F:/MyProgProject/Common/freetype-2.13.2/freetype-2.13.2/freetype-2.13.2/objs"
+    "F:/MyProgProject/OpenGLC++/lib"
     ]
 
 CPPFILES = glob(f'{project_directory}/src/**/*.c*', recursive=True)
         
 LIBS = [
     "glfw3",
-    "OpenAL32"
+    "OpenAL32",
+    "freetype"
     ]
 
 HEADERPATH = [

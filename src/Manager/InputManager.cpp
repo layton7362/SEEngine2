@@ -1,14 +1,12 @@
 #include <algorithm>
 #include <Utils.hpp>
 #include <Manager/InputManager.hpp>
+#include <Core/Log.hpp>
 
 InputManager::InputManager()
 {
-
     Log::info("Create InputManager");
-#ifndef __TEST__
     inputNames = config->inputMap();
-#endif
     Log::info("Create InputManager Done");
 }
 

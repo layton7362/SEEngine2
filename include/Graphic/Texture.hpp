@@ -1,5 +1,6 @@
 #pragma once
 #include <Types.hpp>
+#include <Core/RessourceType.hpp>
 
 class Texture : public RessourceType
 {

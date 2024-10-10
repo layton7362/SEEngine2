@@ -38,8 +38,8 @@ private:
     MeshDataContainer data;
 
 public:
-    Mesh(const MeshDataContainer &);
     Mesh();
+    Mesh(const MeshDataContainer &);
     virtual ~Mesh() noexcept;
 
     MeshDataContainer &getData();

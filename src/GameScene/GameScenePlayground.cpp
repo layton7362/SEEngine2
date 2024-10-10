@@ -1,6 +1,7 @@
 #include <vector>
 #include <math.h>
 
+#include <Types.hpp>
 #include <Graphic/DefaultMaterial.hpp>
 #include <Graphic/DefaultMaterial2D.hpp>
 #include <Graphic/Mesh.hpp>
@@ -8,7 +9,6 @@
 #include <Nodes/CameraNode.hpp>
 #include <Nodes/SceneTree.hpp>
 #include <GameScene/GameScenePlayground.hpp>
-#include <Types.hpp>
 #include <Manager/InputManager.hpp>
 #include <Mesh/Sphere2D.hpp>
 #include <Mesh/Box2D.hpp>
@@ -24,21 +24,22 @@ GameScenePlayground::GameScenePlayground(SceneTree &tree) : GameScene(tree)
 void GameScenePlayground::init()
 {
     obj = new Object3D();
+    obj->material = new DefaultMaterial();
     obj->name = "3D Mash";
     obj->translate(vec3(2, 0, -5.f));
-    obj->mesh = new Box3D(1, 1, 1);
-    obj->material = new DefaultMaterial();
-
-
-    vec3 pos = config->temp();
-    obj2 = new Object3D();
-    obj2->name = "2D Mash";
-    obj2->translate(pos);
-    obj2->mesh = new Box3D(1, 1, 1);
-    obj2->material = new DefaultMaterial2D();
+    // auto box =;
+    obj->mesh =  Res<Box3D>::create();
+    
 
     tree->addNode(obj);
-    tree->addNode(obj2);
+    // vec3 pos = config->temp();
+    // obj2 = new Object3D();
+    // obj2->name = "2D Mash";
+    // obj2->translate(pos);
+    // obj2->mesh = new Box3D(1, 1, 1);
+    // obj2->material = new DefaultMaterial2D();
+
+    // tree->addNode(obj2);
 
     // TODO REMOVE
     CameraNode *cam = new CameraNode();

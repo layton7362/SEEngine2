@@ -7,7 +7,6 @@ isTestBuild = len(list(filter(lambda s: s.count("test"), sys.argv))) > 0
 if isTestBuild:
     print("TEST")
     env = Environment()
-    env.Append(CPPDEFINES=['__TEST__'])
     exec(open("./Scons_Test.py").read())
 else:
     print("MAIN")

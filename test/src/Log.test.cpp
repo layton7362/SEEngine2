@@ -1,7 +1,5 @@
 #include <Core/Log.hpp>
-#include <Core/Log.hpp>
 #include <Test.hpp>
-
 
 bool test_log_stack()
 {

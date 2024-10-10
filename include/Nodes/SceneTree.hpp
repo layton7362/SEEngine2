@@ -25,6 +25,8 @@ private:
 
     Color4 clearColor = Color4(0.2f, 0.3f, 0.3f, 1.0f);
 
+    
+
 public:
     float delta;
     Camera* cam;    
@@ -44,6 +46,6 @@ public:
     void mainUpdate();
     void physikUpdate();
     void renderUpdate();
-
+    void viewportUpdate(uint16_t x,uint16_t y,uint16_t w,uint16_t h);
     void dispose();
 };

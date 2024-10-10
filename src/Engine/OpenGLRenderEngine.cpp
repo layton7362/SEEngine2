@@ -15,7 +15,7 @@ OpenGLRenderEngine::~OpenGLRenderEngine()
 
 void OpenGLRenderEngine::addObject(Object3D *obj)
 {
-    if (this->meshIds.count(obj->mesh) == 0)
+    if (this->meshIds.count(obj->mesh.get()) == 0)
     {
         this->buildMesh(obj);
 
@@ -79,13 +79,13 @@ void OpenGLRenderEngine::buildMesh(Object3D *obj)
     glEnableVertexAttribArray(2);
     glEnableVertexAttribArray(3);
 
-    this->meshIds[obj->mesh] = new RenderData{VAO, VBO, EBO};
+    this->meshIds[obj->mesh.get()] = new RenderData{VAO, VBO, EBO};
 }
 
 void OpenGLRenderEngine::renderBegin(const Color4 &clear)
 {
     glClearColor(clear.r, clear.g, clear.b, clear.a);
-    glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
 void OpenGLRenderEngine::addCameraUniform(Camera *cam, Object3D *obj)
@@ -108,7 +108,7 @@ void OpenGLRenderEngine::render()
         for (Object3D *obj : data->object)
         {
             obj->loadUniforms();
-            RenderData *mdata = meshIds[obj->mesh];
+            RenderData *mdata = meshIds[obj->mesh.get()];
             glBindVertexArray(mdata->VAO);
             if (obj->hasIndices())
             {
@@ -144,4 +144,9 @@ void OpenGLRenderEngine::dispose_meshes()
 void OpenGLRenderEngine::dispose()
 {
     // TODO
+}
+
+void OpenGLRenderEngine::viewportUpdate(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
+{
+    glViewport(x, y, w, h);
 }
