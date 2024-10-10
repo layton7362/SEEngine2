@@ -10,6 +10,8 @@
 #include <Graphic/DefaultMaterial.hpp>
 #include <Graphic/Camera.hpp>
 #include <Nodes/Node.hpp>
+#include <Global.hpp>
+#include <string>
 #include <Nodes/SceneTree.hpp>
 
 SceneTree::SceneTree()
@@ -22,8 +24,7 @@ SceneTree::~SceneTree()
 
 void SceneTree::init()
 {
-    this->renderEngine = new OpenGLRenderEngine();
-    // this->renderEngine = new VulkanRenderEngine();
+    this->renderEngine = RenderEngine::getRenderEngine();
     this->physicWorld = new PhysicWorld();
     this->cam = new Camera();
     this->audioEngine = new AudioEngine();

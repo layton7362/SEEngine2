@@ -3,6 +3,7 @@
 #include <FileSystem/File.hpp>
 #include <Core/Log.hpp>
 #include <Global.hpp>
+#include <Misc/Config.hpp>
 
 Config::Config()
 {
@@ -48,12 +49,22 @@ double Config::fps()
 
 const char *Config::gameTitle()
 {
-    static const char *gt = nullptr;
-    if (!gt)
+    static const char *text = nullptr;
+    if (!text)
     {
-        gt = data["gameTitle"].as_string().c_str();
+        text = data["gameTitle"].as_string().c_str();
     }
-    return gt;
+    return text;
+}
+
+const char *Config::renderEngine()
+{
+    static const char *text = nullptr;
+    if (!text)
+    {
+        text = data["engine"].as_object()["render"].as_string().c_str();
+    }
+    return text;
 }
 
 uvec2 Config::windowSize()

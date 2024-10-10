@@ -1,4 +1,3 @@
-
 #include <array>
 #include <algorithm>
 #include <Graphic/Camera.hpp>
@@ -26,6 +25,7 @@ void OpenGLRenderEngine::addObject(Object3D *obj)
 
 void OpenGLRenderEngine::removeObject(Object3D *obj)
 {
+
 }
 
 void OpenGLRenderEngine::addMaterial(Object3D *obj)
@@ -82,12 +82,6 @@ void OpenGLRenderEngine::buildMesh(Object3D *obj)
     this->meshIds[obj->mesh.get()] = new RenderData{VAO, VBO, EBO};
 }
 
-void OpenGLRenderEngine::renderBegin(const Color4 &clear)
-{
-    glClearColor(clear.r, clear.g, clear.b, clear.a);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-}
-
 void OpenGLRenderEngine::addCameraUniform(Camera *cam, Object3D *obj)
 {
     const GLint &progId = obj->material->getProgramId();
@@ -95,6 +89,12 @@ void OpenGLRenderEngine::addCameraUniform(Camera *cam, Object3D *obj)
     const GLint locProj = glGetUniformLocation(progId, "projection");
     obj->addUniform(locView, UniformCall(TraitUniform::setMatrix4(locView, glm::inverse(cam->view))));
     obj->addUniform(locProj, UniformCall(TraitUniform::setMatrix4(locProj, cam->projection)));
+}
+
+void OpenGLRenderEngine::renderBegin(const Color4 &clear)
+{
+    glClearColor(clear.r, clear.g, clear.b, clear.a);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
 void OpenGLRenderEngine::render()

@@ -5,35 +5,27 @@
 #include <vector>
 #include <map>
 #include <glm/glm.hpp>
+#include <Engine/RenderEngine.hpp>
 
-class VulkanRenderEngine
+class VulkanRenderEngine : public RenderEngine
 {
-// public:
-//     VulkanRenderEngine(/* Pass any necessary parameters here */);
-//     ~VulkanRenderEngine();
+public:
+    VulkanRenderEngine();
+    ~VulkanRenderEngine();
 
-//     void addObject(Object3D *obj);
-//     void removeObject(Object3D *obj);
-//     void renderBegin(const );
-//     void render();
-//     void renderEnd();
-//     void dispose_meshes();
-//     void dispose();
+    void addObject(Object3D *mesh) override;
+    void removeObject(Object3D *mesh) override;
 
-// private:
-//     struct RenderData {
-//         VkBuffer vertexBuffer;
-//         VkDeviceMemory vertexBufferMemory;
-//         VkBuffer indexBuffer;
-//         VkDeviceMemory indexBufferMemory;
-//     };
+    void buildMesh(Object3D *mesh) override;
+    void dispose_meshes() override;
 
-//     std::map<Object3D*, RenderData*> render_id;
+    void renderBegin(const Color4 &clear) override;
+    void addCameraUniform(Camera *, Object3D *) override;
 
-//     VkDevice device;
-//     VkPhysicalDevice physicalDevice; // If needed, replace with appropriate physical device handle
+    void render() override;
+    void renderEnd() override;
 
-//     void buildMesh(Object3D *obj);
-//     void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
-//     uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
+    void viewportUpdate(uint16_t x, uint16_t y, uint16_t w, uint16_t h) override;
+
+    void dispose() override;
 };

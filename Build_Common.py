@@ -28,12 +28,14 @@ CPPFILES = glob(f'{project_directory}/src/**/*.c*', recursive=True)
 LIBS = [
     "glfw3",
     "OpenAL32",
-    "freetype"
+    "freetype",
+    "vulkan-1"
     ]
 
 HEADERPATH = [
        f"{project_directory}/include",
-       "F:/MyProgProject/Common/include"
+       "F:/MyProgProject/Common/include",
+       "C:/VulkanSDK/1.2.170.0/Include"
         ]
 
 CPPFLAGS = [

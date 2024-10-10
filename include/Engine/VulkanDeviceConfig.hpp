@@ -13,11 +13,11 @@ struct Bufferdata
 struct VulkanData
 {
     VkInstance instance;
-    VkDevice device;
     VkPhysicalDevice physicalDevice;
+    VkDevice device;
 };
 
-struct Images
+struct ImageInfo
 {
     uint16_t size;
     VkFormat format;
@@ -29,7 +29,20 @@ struct Images
 class VulkanDeviceConfig
 {
 
+    VulkanData vulkanData;
+    ImageInfo imageInfo;
+
 public:
     VulkanDeviceConfig();
     virtual ~VulkanDeviceConfig() noexcept;
+
+    void createVulkanInstance();
+    void createPhysicalDevice();
+    void createDevice();
+
+    void createSwapChains();
+    void createImages();
+    void createImageViews();
+
+    void createBuffer();
 };

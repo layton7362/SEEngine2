@@ -23,6 +23,7 @@ public:
     void read();
     double fps();
     const char *gameTitle();
+    const char *renderEngine();
     uvec2 windowSize();
     InputNameMap inputMap();
     vec3 temp();

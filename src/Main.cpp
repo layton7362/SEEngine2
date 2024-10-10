@@ -22,10 +22,8 @@ int main(int argc, char **argv)
     window = new Window(windowSize.x, windowSize.y, config->gameTitle());
 
     window->setViewportUpdateCallback([](uint16_t x, uint16_t y, uint16_t w, uint16_t h)
-
-                                      { //
-                                          glViewport(x, y, w, h);
-                                          // sceneTree->viewportUpdate(x, y, w, h);
+                                      { 
+                                          sceneTree->viewportUpdate(x, y, w, h);
                                       });
     window->init_window();
 

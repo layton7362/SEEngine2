@@ -1,5 +1,5 @@
 {
-    "gameTitle": "MyGame",
+    "gameTitle": "SalamEngine",
     "fps": 60.0,
     "window": {
         "width": 800,
@@ -29,5 +29,9 @@
         "x": -0.0,
         "y": 0.5,
         "z": 1.5
+    },
+    "engine":
+    {
+        "render": "opengl"
     }
 }
