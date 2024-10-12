@@ -4,8 +4,8 @@
 #include <Types.hpp>
 #define assertm(exp, msg) assert(((void)msg, exp))
 
-#define isSubclass(base, class) dynamic_cast<base *>(class) != nullptr
-#define toSubclass(base, class) dynamic_cast<base *>(class)
+#define isSubclass(class, instance) dynamic_cast<class *>(instance) != nullptr
+#define toSubclass(class, instance) dynamic_cast<class *>(instance)
 
 #ifndef Release
 #define isNullptr(ptr) (ptr == nullptr)

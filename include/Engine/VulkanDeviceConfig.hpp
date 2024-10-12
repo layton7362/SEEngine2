@@ -1,48 +1,50 @@
 #pragma once
-#include <vulkan/vulkan.h>
-#include <vector>
+#include <Core/Log.hpp>
+#include <Interface.hpp>
+#include <Engine/VulkanTypes.hpp>
 
-using std::vector;
-
-struct Bufferdata
+class VulkanDeviceConfig : public IDisposable
 {
-    VkBuffer buffer;
-    VkDeviceMemory memory;
-};
-
-struct VulkanData
-{
-    VkInstance instance;
-    VkPhysicalDevice physicalDevice;
-    VkDevice device;
-};
-
-struct ImageInfo
-{
-    uint16_t size;
-    VkFormat format;
-    vector<VkSwapchainKHR> swapchains;
-    vector<VkImage> images;
-    vector<VkImageView> views;
-};
-
-class VulkanDeviceConfig
-{
+    bool enableValidationLayers = true;
+    const uint8_t MAX_FRAMES = 2;
 
     VulkanData vulkanData;
     ImageInfo imageInfo;
+    VkAllocationCallbacks *alloc = nullptr;
+    VkDebugUtilsMessengerEXT debugMessenger;
+    Queues queues;
+
+    const vector<const char *> validationLayers = {
+        "VK_LAYER_KHRONOS_validation"};
+
+    const vector<const char *> deviceExtensions = {
+        VK_KHR_SWAPCHAIN_EXTENSION_NAME};
 
 public:
     VulkanDeviceConfig();
     virtual ~VulkanDeviceConfig() noexcept;
 
+    void init();
     void createVulkanInstance();
+    void setupDebugMessenger();
+    void createSurface();
     void createPhysicalDevice();
     void createDevice();
-
     void createSwapChains();
-    void createImages();
     void createImageViews();
 
-    void createBuffer();
+    void dispose() override;
+
+    uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
+    BufferData createBuffer(const VkDeviceSize size, const VkBufferCreateFlags flags, const VkBufferUsageFlags usage, const VkSharingMode mode = VkSharingMode::VK_SHARING_MODE_EXCLUSIVE, const VkMemoryPropertyFlags memoryFlag);
+    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+    bool isDeviceSuitable(VkPhysicalDevice device);
+    bool checkDeviceExtensionSupport(VkPhysicalDevice device);
+    vector<const char *> getRequiredExtensions();
+    void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT &createInfo);
+    VkResult CreateDebugUtilsMessengerEXT(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkDebugUtilsMessengerEXT *pDebugMessenger);
+    SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
+    VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
+    VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
+    VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
 };

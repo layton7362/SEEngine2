@@ -13,10 +13,12 @@ RenderEngine *RenderEngine::getRenderEngine()
     if (strcmp(config->renderEngine(), "opengl") == 0)
     {
         re = new OpenGLRenderEngine();
+        re->init();
     }
     else if (strcmp(config->renderEngine(), "vulkan") == 0)
     {
         re = new VulkanRenderEngine();
+        re->init();
     }
     return re;
 }

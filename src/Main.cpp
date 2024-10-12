@@ -3,10 +3,8 @@
 #include <Nodes/SceneTree.hpp>
 
 #include <Global.hpp>
-
 #include <Graphic/Material.hpp>
 #include <Core/Ressource.hpp>
-
 #include <Types.hpp>
 
 using std::array;

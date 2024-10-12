@@ -3,10 +3,11 @@
 #include <Core/String.hpp>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <Interface.hpp>
 
 using ViewportCallback = void (*)(uint16_t, uint16_t, uint16_t, uint16_t);
 
-class Window
+class Window : public IDisposable
 {
     size_t width;
     size_t height;
@@ -26,8 +27,9 @@ public:
     void swapBuffers();
     bool isClosing();
     void pollEvents();
-
+    
     void setViewportUpdateCallback(ViewportCallback callback);
     static void framebufferSizeCallback(GLFWwindow *window, int width, int height);
     
+    void dispose() override;
 };

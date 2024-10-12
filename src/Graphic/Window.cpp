@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <stdio.h>
 #include <Manager/InputManager.hpp>
+#include "Window.hpp"
 
 ViewportCallback Window::callback_updateViewport = nullptr;
 
@@ -101,3 +102,8 @@ void Window::framebufferSizeCallback(GLFWwindow *window, int width, int height)
     Window::callback_updateViewport(0,0, width,height);
 }
 
+void Window::dispose()
+{
+    glfwDestroyWindow(window);
+    glfwTerminate();
+}

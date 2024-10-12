@@ -16,8 +16,10 @@ class Camera;
 class RenderEngine : public IDisposable
 {
 public:
-    virtual void addObject(Object3D *mesh) = 0;
 
+    virtual void init(){};
+
+    virtual void addObject(Object3D *mesh) = 0;
     virtual void removeObject(Object3D *mesh) = 0;
 
     virtual void buildMesh(Object3D *mesh) = 0;

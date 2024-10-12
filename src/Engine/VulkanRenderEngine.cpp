@@ -10,6 +10,12 @@ VulkanRenderEngine::~VulkanRenderEngine()
 {
 }
 
+void VulkanRenderEngine::init()
+{
+    vulkanDeviceConfig = new VulkanDeviceConfig();
+    vulkanDeviceConfig->init();
+}
+
 void VulkanRenderEngine::addObject(Object3D *mesh) {}
 void VulkanRenderEngine::removeObject(Object3D *mesh) {}
 
