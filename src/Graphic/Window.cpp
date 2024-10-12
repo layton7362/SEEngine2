@@ -1,9 +1,8 @@
-#include <Graphic/Window.hpp>
 #include <Core/Log.hpp>
 #include <glad/glad.h>
 #include <stdio.h>
 #include <Manager/InputManager.hpp>
-#include "Window.hpp"
+#include <Graphic/Window.hpp>
 
 ViewportCallback Window::callback_updateViewport = nullptr;
 

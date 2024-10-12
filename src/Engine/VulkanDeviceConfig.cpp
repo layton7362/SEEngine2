@@ -1,16 +1,13 @@
+#define GLFW_INCLUDE_VULKAN
 #include <set>
-#include <Global.hpp>
-#include <vulkan/vulkan.h>
-#include <Engine/VulkanDeviceConfig.hpp>
 #include <Graphic/Window.hpp>
+#include <Global.hpp>
 #include <GLFW/glfw3.h>
 #include <Engine/VulkanDeviceConfig.hpp>
-#include "VulkanDeviceConfig.hpp"
 
 static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT *pCallbackData, void *pUserData)
 {
     std::cerr << "validation layer: " << pCallbackData->pMessage << std::endl;
-
     return VK_FALSE;
 }
 
@@ -110,7 +107,7 @@ VkResult VulkanDeviceConfig::CreateDebugUtilsMessengerEXT(VkInstance instance, c
 void VulkanDeviceConfig::createSurface()
 {
     // TODO
-    VKCHECK(glfwCreateWindowSurface(vulkanData.instance, window->window, nullptr, &vulkanData.surface), "failed to create window surface!")
+    glfwCreateWindowSurface(vulkanData.instance, window->window, nullptr, &vulkanData.surface);
 }
 
 void VulkanDeviceConfig::createPhysicalDevice()
@@ -356,7 +353,6 @@ BufferData VulkanDeviceConfig::createBuffer(
     const VkDeviceSize size,
     const VkBufferCreateFlags flags,
     const VkBufferUsageFlags usage,
-    const VkSharingMode mode,
     const VkMemoryPropertyFlags memoryFlag)
 {
     BufferData bufferData;
@@ -367,7 +363,7 @@ BufferData VulkanDeviceConfig::createBuffer(
     bufferCreateInfo.flags = flags;
     bufferCreateInfo.size = size;
     bufferCreateInfo.usage = usage;
-    bufferCreateInfo.sharingMode = mode;
+    bufferCreateInfo.sharingMode = VkSharingMode::VK_SHARING_MODE_EXCLUSIVE;
     bufferCreateInfo.queueFamilyIndexCount = 0;
     bufferCreateInfo.pQueueFamilyIndices = 0;
 
@@ -454,7 +450,7 @@ bool VulkanDeviceConfig::isDeviceSuitable(VkPhysicalDevice device)
     bool swapChainAdequate = false;
     if (extensionsSupported)
     {
-        SwapChainSupportDetails swapChainSupport = querySwapChainSupport(VulkanData.device);
+        SwapChainSupportDetails swapChainSupport = querySwapChainSupport(vulkanData.physicalDevice);
         swapChainAdequate = !swapChainSupport.formats.empty() && !swapChainSupport.presentModes.empty();
     }
 

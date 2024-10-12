@@ -100,7 +100,7 @@ size_t String::size() const
     return length;
 }
 
-const char *String::c_str()
+const char *String::c_str() const
 {
     return data;
 }

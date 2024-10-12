@@ -1,5 +1,4 @@
-#include <vulkan/vulkan.h>
-#include <Engine/VulkanDeviceConfig.hpp>
+#include <Engine/VulkanPipeline.hpp>
 #include <Engine/VulkanRenderEngine.hpp>
 
 VulkanRenderEngine::VulkanRenderEngine()
@@ -12,8 +11,8 @@ VulkanRenderEngine::~VulkanRenderEngine()
 
 void VulkanRenderEngine::init()
 {
-    vulkanDeviceConfig = new VulkanDeviceConfig();
-    vulkanDeviceConfig->init();
+    vulkanPipeline = new VulkanPipeline();
+    vulkanPipeline->init();
 }
 
 void VulkanRenderEngine::addObject(Object3D *mesh) {}

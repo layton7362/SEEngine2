@@ -6,19 +6,20 @@
 class VulkanDeviceConfig : public IDisposable
 {
     bool enableValidationLayers = true;
-    const uint8_t MAX_FRAMES = 2;
-
-    VulkanData vulkanData;
-    ImageInfo imageInfo;
-    VkAllocationCallbacks *alloc = nullptr;
-    VkDebugUtilsMessengerEXT debugMessenger;
-    Queues queues;
 
     const vector<const char *> validationLayers = {
         "VK_LAYER_KHRONOS_validation"};
 
     const vector<const char *> deviceExtensions = {
         VK_KHR_SWAPCHAIN_EXTENSION_NAME};
+
+public:
+    const uint8_t MAX_FRAMES = 2;
+    VulkanData vulkanData;
+    ImageInfo imageInfo;
+    VkAllocationCallbacks *alloc = nullptr;
+    VkDebugUtilsMessengerEXT debugMessenger;
+    Queues queues;
 
 public:
     VulkanDeviceConfig();
@@ -36,7 +37,7 @@ public:
     void dispose() override;
 
     uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
-    BufferData createBuffer(const VkDeviceSize size, const VkBufferCreateFlags flags, const VkBufferUsageFlags usage, const VkSharingMode mode = VkSharingMode::VK_SHARING_MODE_EXCLUSIVE, const VkMemoryPropertyFlags memoryFlag);
+    BufferData createBuffer(const VkDeviceSize size, const VkBufferCreateFlags flags, const VkBufferUsageFlags usage, const VkMemoryPropertyFlags memoryFlag);
     QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
     bool isDeviceSuitable(VkPhysicalDevice device);
     bool checkDeviceExtensionSupport(VkPhysicalDevice device);

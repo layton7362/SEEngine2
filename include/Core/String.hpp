@@ -18,9 +18,9 @@ public:
     String(const String &other);
     String(const char *str);
     String(const int &other);
-    String(const int&& other);
+    String(const int &&other);
     String(const double &other);
-    String(const double&& other);
+    String(const double &&other);
     ~String();
 
     operator const char *() const;
@@ -51,14 +51,16 @@ public:
 
     vector<String> split(const char *delimeter) const;
 
-    const char *c_str();
+    const char *c_str() const;
     char char_at(size_t pos) const;
 
     static String convertToString(const double &value);
     static String convertToString(const int &value);
 
     friend std::ostream &operator<<(std::ostream &os, const String &str);
+    
 };
+
 
 template <typename T1, typename T2>
 String String::replace(T1 search, T2 replace) const

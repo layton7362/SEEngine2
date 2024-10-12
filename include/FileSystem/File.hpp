@@ -16,10 +16,7 @@ struct FileData
 class File
 {
 private:
-    // Verhindert den Standardkonstruktor
     File() {}
-
-    // Verhindert den Destruktor
     ~File() {}
 
 public:
