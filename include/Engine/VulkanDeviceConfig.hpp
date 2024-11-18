@@ -11,7 +11,11 @@ class VulkanDeviceConfig : public IDisposable
         "VK_LAYER_KHRONOS_validation"};
 
     const vector<const char *> deviceExtensions = {
-        VK_KHR_SWAPCHAIN_EXTENSION_NAME};
+        VK_KHR_SWAPCHAIN_EXTENSION_NAME,
+        VK_KHR_SURFACE_EXTENSION_NAME
+        // VK_KHR_WIN32_SURFACE_EXTENSION_NAME
+
+        };
 
 public:
     const uint8_t MAX_FRAMES = 2;
@@ -38,7 +42,7 @@ public:
 
     uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
     BufferData createBuffer(const VkDeviceSize size, const VkBufferCreateFlags flags, const VkBufferUsageFlags usage, const VkMemoryPropertyFlags memoryFlag);
-    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+    QueueFamilyIndices findQueueFamilies(const VkPhysicalDevice& device);
     bool isDeviceSuitable(VkPhysicalDevice device);
     bool checkDeviceExtensionSupport(VkPhysicalDevice device);
     vector<const char *> getRequiredExtensions();
@@ -48,4 +52,6 @@ public:
     VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
     VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
     VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
+    bool checkValidationLayerSupport();
+
 };

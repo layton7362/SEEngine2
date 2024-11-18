@@ -22,8 +22,8 @@ VulkanDeviceConfig::~VulkanDeviceConfig()
 void VulkanDeviceConfig::init()
 {
     createVulkanInstance();
-    setupDebugMessenger();
-    createSurface();
+    // setupDebugMessenger();
+    // createSurface();
     createPhysicalDevice();
     createDevice();
     createSwapChains();
@@ -32,9 +32,14 @@ void VulkanDeviceConfig::init()
 
 void VulkanDeviceConfig::createVulkanInstance()
 {
+    if (enableValidationLayers && !checkValidationLayerSupport())
+    {
+        Log::error("Validation layers requested, but not available!");
+        throw std::runtime_error("Cancel!");
+    }
+
     VkApplicationInfo appInfo{};
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.pNext = nullptr;
     appInfo.pApplicationName = config->gameTitle();
     appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
     appInfo.pEngineName = "No Engine";
@@ -50,7 +55,8 @@ void VulkanDeviceConfig::createVulkanInstance()
     createInfo.ppEnabledExtensionNames = extensions.data();
 
     VkDebugUtilsMessengerCreateInfoEXT debugCreateInfo{};
-    if (enableValidationLayers)
+    if (false)
+    // if (enableValidationLayers)
     {
         createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
         createInfo.ppEnabledLayerNames = validationLayers.data();
@@ -61,20 +67,10 @@ void VulkanDeviceConfig::createVulkanInstance()
     else
     {
         createInfo.enabledLayerCount = 0;
-
         createInfo.pNext = nullptr;
     }
 
     VKCHECK(vkCreateInstance(&createInfo, nullptr, &vulkanData.instance), "Fail: vkCreateInstance")
-}
-
-void VulkanDeviceConfig::populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT &createInfo)
-{
-    createInfo = {};
-    createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
-    createInfo.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
-    createInfo.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
-    createInfo.pfnUserCallback = debugCallback;
 }
 
 void VulkanDeviceConfig::setupDebugMessenger()
@@ -87,13 +83,22 @@ void VulkanDeviceConfig::setupDebugMessenger()
 
     if (CreateDebugUtilsMessengerEXT(vulkanData.instance, &createInfo, nullptr, &debugMessenger) != VK_SUCCESS)
     {
-        Log::error("failed to set up debug messenger!");
+        Log::error("Failed to set up debug messenger!");
     }
+}
+
+void VulkanDeviceConfig::populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT &createInfo)
+{
+    createInfo = {};
+    createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
+    createInfo.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
+    createInfo.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
+    createInfo.pfnUserCallback = debugCallback;
 }
 
 VkResult VulkanDeviceConfig::CreateDebugUtilsMessengerEXT(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT *pCreateInfo, const VkAllocationCallbacks *pAllocator, VkDebugUtilsMessengerEXT *pDebugMessenger)
 {
-    auto func = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
+    PFN_vkCreateDebugUtilsMessengerEXT func = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
     if (func != nullptr)
     {
         return func(instance, pCreateInfo, pAllocator, pDebugMessenger);
@@ -117,7 +122,7 @@ void VulkanDeviceConfig::createPhysicalDevice()
 
     if (deviceCount == 0)
     {
-        Log::error("failed to find GPUs with Vulkan support!");
+        Log::error("Failed to find GPUs with Vulkan support!");
     }
 
     std::vector<VkPhysicalDevice> devices(deviceCount);
@@ -134,7 +139,7 @@ void VulkanDeviceConfig::createPhysicalDevice()
 
     if (vulkanData.physicalDevice == VK_NULL_HANDLE)
     {
-        Log::error("failed to find a suitable GPU!");
+        Log::error("Failed to find a suitable GPU!");
     }
 }
 
@@ -181,7 +186,7 @@ void VulkanDeviceConfig::createDevice()
 
     if (vkCreateDevice(vulkanData.physicalDevice, &createInfo, nullptr, &vulkanData.device) != VK_SUCCESS)
     {
-        Log::error("failed to create logical device!");
+        Log::error("Failed to create logical device!");
     }
 
     vkGetDeviceQueue(vulkanData.device, indices.graphicsFamily.value(), 0, &queues.graphic);
@@ -234,7 +239,7 @@ void VulkanDeviceConfig::createSwapChains()
 
     if (vkCreateSwapchainKHR(vulkanData.device, &createInfo, nullptr, &imageInfo.swapChain) != VK_SUCCESS)
     {
-        Log::error("failed to create swap chain!");
+        Log::error("Failed to create swap chain!");
     }
 
     vkGetSwapchainImagesKHR(vulkanData.device, imageInfo.swapChain, &imageCount, nullptr);
@@ -344,7 +349,7 @@ void VulkanDeviceConfig::createImageViews()
 
         if (vkCreateImageView(vulkanData.device, &createInfo, nullptr, &imageInfo.views[i]) != VK_SUCCESS)
         {
-            Log::error("failed to create image views!");
+            Log::error("Failed to create image views!");
         }
     }
 }
@@ -380,7 +385,7 @@ BufferData VulkanDeviceConfig::createBuffer(
 
     if (vkAllocateMemory(vulkanData.device, &allocInfo, nullptr, &bufferData.memory) != VK_SUCCESS)
     {
-        throw std::runtime_error("failed to allocate buffer memory!");
+        throw std::runtime_error("Failed to allocate buffer memory!");
     }
 
     vkBindBufferMemory(vulkanData.device, bufferData.buffer, bufferData.memory, 0);
@@ -401,18 +406,18 @@ uint32_t VulkanDeviceConfig::findMemoryType(uint32_t typeFilter, VkMemoryPropert
         }
     }
 
-    throw std::runtime_error("failed to find suitable memory type!");
+    throw std::runtime_error("Failed to find suitable memory type!");
 }
 
-QueueFamilyIndices VulkanDeviceConfig::findQueueFamilies(VkPhysicalDevice device)
+QueueFamilyIndices VulkanDeviceConfig::findQueueFamilies(const VkPhysicalDevice &physicalDevice)
 {
     QueueFamilyIndices indices;
 
     uint32_t queueFamilyCount = 0;
-    vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, nullptr);
 
     std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
-    vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
+    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, queueFamilies.data());
 
     int i = 0;
     for (const auto &queueFamily : queueFamilies)
@@ -423,7 +428,7 @@ QueueFamilyIndices VulkanDeviceConfig::findQueueFamilies(VkPhysicalDevice device
         }
 
         VkBool32 presentSupport = false;
-        vkGetPhysicalDeviceSurfaceSupportKHR(device, i, vulkanData.surface, &presentSupport);
+        vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, i, vulkanData.surface, &presentSupport);
 
         if (presentSupport)
         {
@@ -490,6 +495,36 @@ std::vector<const char *> VulkanDeviceConfig::getRequiredExtensions()
     }
 
     return extensions;
+}
+
+bool VulkanDeviceConfig::checkValidationLayerSupport()
+{
+    uint32_t layerCount;
+    vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+
+    std::vector<VkLayerProperties> availableLayers(layerCount);
+    vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+
+    for (const char *layerName : validationLayers)
+    {
+        bool layerFound = false;
+
+        for (const auto &layerProperties : availableLayers)
+        {
+            if (strcmp(layerName, layerProperties.layerName) == 0)
+            {
+                layerFound = true;
+                break;
+            }
+        }
+
+        if (!layerFound)
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 void VulkanDeviceConfig::dispose()
