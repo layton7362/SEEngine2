@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Core/RessourceType.hpp>
+#include <Core/ResourceType.hpp>
 #include <glm/glm.hpp>
 
 using namespace glm;
 
-class Shape : public RessourceType
+class Shape : public ResourceType
 {
 
 protected:

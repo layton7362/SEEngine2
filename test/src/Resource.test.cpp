@@ -1,5 +1,5 @@
 #include <Types.hpp>
-#include <Core/Ressource.hpp>
+#include <Core/Resource.hpp>
 #include <Core/Log.hpp>
 #include <Graphic/Mesh.hpp>
 #include <Mesh/Box3D.hpp>
@@ -13,7 +13,7 @@ bool procedure_ressource(Res<Mesh> res, int checkNumber)
     return true;
 }
 
-bool test_Ressource_Create()
+bool test_Resource_Create()
 {
     Res<Mesh> test;
     test.name = "Test";
@@ -54,12 +54,12 @@ bool test_Ressource_Create()
     return true;
 }
 
-int main_Ressource(const char *type)
+int main_Resource(const char *type)
 {
     Log::info("====================");
     Log::info(type);
     Log::info("====================");
-    assert(test_Ressource_Create());
+    assert(test_Resource_Create());
 
     Log::info(type);
     Log::info("Test ends successful");

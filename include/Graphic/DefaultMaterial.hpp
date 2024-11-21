@@ -8,6 +8,7 @@ class DefaultMaterial : public Material
 private:
     DefaultMaterial(std::array<Shader *, ShaderListType::Count> shaders) = delete;
 
+    
 public:
     DefaultMaterial();
     virtual ~DefaultMaterial() noexcept;

@@ -5,14 +5,14 @@
 
 #include <Core/Log.hpp>
 #include <Utils.hpp>
-#include <Core/RessourceType.hpp>
+#include <Core/ResourceType.hpp>
 
 template <class R>
-class Ressource
+class Resource
 {
     static_assert(!std::is_pointer<R>::value, "Must not be a pointer.");
 
-    friend class RessourceManager;
+    friend class ResourceManager;
 
 private:
     R *resType = nullptr;
@@ -21,12 +21,12 @@ private:
 public:
     const char *name = "";
 
-    Ressource()
+    Resource()
     {
     }
 
     template <typename T>
-    Ressource(Ressource<T> &ressource)
+    Resource(Resource<T> &ressource)
     {
         if (&ressource != nullptr)
         {
@@ -36,7 +36,7 @@ public:
         }
     }
 
-    ~Ressource() noexcept
+    ~Resource() noexcept
     {
         if (!init)
         {
@@ -62,14 +62,14 @@ public:
     }
 
     template <typename Sub>
-    Ressource<R> &operator=(Ressource<Sub> &other)
+    Resource<R> &operator=(Resource<Sub> &other)
     {
         this->set(other.get());
         return *this;
     }
 
     template <typename Sub>
-    Ressource<R> &operator=(Ressource<Sub> &&other)
+    Resource<R> &operator=(Resource<Sub> &&other)
     {
         this->set(other.get());
         return *this;
@@ -123,24 +123,24 @@ public:
         return dynamic_cast<Sub *>(this->resType);
     }
 
-    inline static Ressource<R> create()
+    inline static Resource<R> create()
     {
         R *data = new R();
-        Ressource<R> res;
+        Resource<R> res;
         res.set(data);
         return res;
     }
 
     template <typename Sub>
-    inline static Ressource<R> create()
+    inline static Resource<R> create()
     {
         checkIsSubclass(R, Sub);
         R *data = new Sub();
-        Ressource<R> res;
+        Resource<R> res;
         res.set(data);
         return res;
     }
 };
 
 template <typename R>
-using Res = Ressource<R>;
+using Res = Resource<R>;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core/RessourceType.hpp>
+#include <Core/ResourceType.hpp>
 #include <Core/String.hpp>
 #include <FileSystem/File.hpp>
 #include <glad/glad.h>
@@ -32,7 +32,7 @@ public:
     inline static const size_t Count = 4;
 };
 
-class Shader : public RessourceType
+class Shader : public ResourceType
 {
 public:
     FileData file;

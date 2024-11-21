@@ -75,8 +75,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "f:/MyProgProject/OpenGLC++/src/Engine",
-      "program": "f:/MyProgProject/OpenGLC++/src/Engine/build/Debug/outDebug",
+      "cwd": "f:/MyProgProject/OpenGLC++/src/GameScene",
+      "program": "f:/MyProgProject/OpenGLC++/src/GameScene/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

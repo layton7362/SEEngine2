@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core/RessourceType.hpp>
+#include <Core/ResourceType.hpp>
 #include <Core/String.hpp>
 #include <Graphic/Shader.hpp>
 #include <variant>
@@ -18,13 +18,10 @@ using std::array;
 using std::map;
 using std::variant;
 
-class Material : public RessourceType, public TraitUniform
+class Material : public ResourceType, public TraitUniform
 {
 protected:
     int programId = -1;
-    
-
-
     void build(array<Shader *, ShaderListType::Count> &shaders);
 public:
     Material();

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core/Ressource.hpp>
+#include <Core/Resource.hpp>
 #include <Graphic/Uniform.hpp>
 #include <Graphic/Mesh.hpp>
 #include <Graphic/Material.hpp>
@@ -11,7 +11,7 @@ using namespace glm;
 class Object3D : public Node3D, public TraitUniform
 {
 public:
-    Ressource<Mesh> mesh;
+    Resource<Mesh> mesh;
     // Mesh *mesh;
     Material *material;
     vector<float> packedData;

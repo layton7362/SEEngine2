@@ -1,13 +1,12 @@
 #pragma once
 #include <Types.hpp>
-#include <Core/RessourceType.hpp>
+#include <Core/ResourceType.hpp>
 
-class Texture : public RessourceType
+class Texture : public ResourceType
 {
 public:
     uvec2 size;
     String path;
-
 public:
     Texture();
     virtual ~Texture() noexcept;

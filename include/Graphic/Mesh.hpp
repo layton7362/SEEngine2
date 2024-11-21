@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core/RessourceType.hpp>
+#include <Core/ResourceType.hpp>
 #include <array>
 #include <variant>
 #include <vector>
@@ -31,7 +31,7 @@ struct MeshData
 using Container = variant<vector<vec2>, vector<vec3>, vector<vec4>, vector<uvec3>, vector<float>>;
 using MeshDataContainer = array<Container, MeshData::Count>;
 
-class Mesh : public RessourceType
+class Mesh : public ResourceType
 {
 
 private:

@@ -30,18 +30,16 @@ void GameScenePlayground::init()
     // auto box =;
     obj->mesh =  Res<Box3D>::create();
     
+    obj2 = new Object3D();
+    obj2->material = new DefaultMaterial();
+    obj2->name = "3D Mash";
+    obj2->translate(vec3(5, 0, -5.f));
+    // auto box =;
+    obj2->mesh =  Res<Box3D>::create();
 
     tree->addNode(obj);
-    // vec3 pos = config->temp();
-    // obj2 = new Object3D();
-    // obj2->name = "2D Mash";
-    // obj2->translate(pos);
-    // obj2->mesh = new Box3D(1, 1, 1);
-    // obj2->material = new DefaultMaterial2D();
+    tree->addNode(obj2);
 
-    // tree->addNode(obj2);
-
-    // TODO REMOVE
     CameraNode *cam = new CameraNode();
     cam->cam = tree->cam;
     tree->addNode(cam);
@@ -62,4 +60,6 @@ void GameScenePlayground::update(const float &delta)
 void GameScenePlayground::dispose()
 {
     obj->dispose();
+    obj2->dispose();
+
 }

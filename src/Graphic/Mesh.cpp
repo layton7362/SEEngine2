@@ -1,10 +1,10 @@
 #include <Graphic/Mesh.hpp>
 
-Mesh::Mesh():RessourceType()
+Mesh::Mesh():ResourceType()
 {
 }
 
-Mesh::Mesh(const MeshDataContainer &meshData) : RessourceType()
+Mesh::Mesh(const MeshDataContainer &meshData) : ResourceType()
 {
     data[MeshData::VERTICES] = meshData[MeshData::VERTICES];
     data[MeshData::NORMALS] = meshData[MeshData::NORMALS];

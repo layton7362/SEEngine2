@@ -2,19 +2,19 @@
 
 #include "Object.hpp"
 
-class RessourceType : public Object
+class ResourceType : public Object
 {
     template <typename R>
-    friend class Ressource;
-    friend class RessourceManager;
+    friend class Resource;
+    friend class ResourceManager;
 
 protected:
     unsigned int instance_counter = 0;
 
 
 public:
-    RessourceType();
-    virtual ~RessourceType();
+    ResourceType();
+    virtual ~ResourceType();
 
     void increaseCounter();
     void decreaseCounter();

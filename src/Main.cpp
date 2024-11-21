@@ -4,7 +4,7 @@
 
 #include <Global.hpp>
 #include <Graphic/Material.hpp>
-#include <Core/Ressource.hpp>
+#include <Core/Resource.hpp>
 #include <Types.hpp>
 
 using std::array;

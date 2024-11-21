@@ -14,7 +14,7 @@
     {                         \
         return;               \
     }
-#define checkIsSubclass(base, class) static_assert(std::is_base_of<base, class>::value, "Ressource: R must be a subclass of RessourceType");
+#define checkIsSubclass(base, class) static_assert(std::is_base_of<base, class>::value, "Resource: R must be a subclass of ResourceType");
 #define checkIsConditionOk(expression, message) assertm(expression, message);
 #elif
 #define checkIsSubclass(base, class)

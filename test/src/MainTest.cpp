@@ -4,7 +4,7 @@
 extern int main_Log(const char *type);
 extern int main_String(const char *type);
 extern int main_Path(const char *type);
-extern int main_Ressource(const char* type);
+extern int main_Resource(const char* type);
 
 int main()
 {
@@ -13,7 +13,7 @@ int main()
     main_Log("Log");
     main_String("String");
     main_Path("Path");
-    main_Ressource("Ressource");
+    main_Resource("Resource");
 
     Log::info("All tests ends successful");
 
